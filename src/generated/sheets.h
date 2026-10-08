@@ -15,6 +15,7 @@ namespace tun {
     inline constexpr int flick_threshold = 40;  // mouse counts: Accumulated mouse movement while blocking needed to switch guard
     inline constexpr float flick_axis_dominance = 1.5f;  // ratio: Main axis must exceed the other by this ratio, so diagonal wobble does not switch
     inline constexpr int flick_decay_ms = 250;  // ms: Accumulated movement resets after this long without movement
+    inline constexpr int flick_cooldown_ms = 150;  // ms: Shortest time between two guard switches, so circling the mouse doesn't cycle guards
     inline constexpr int lock_camera_while_guarding = 1;  // bool: Mouse does not turn the camera while block is held (FOR HONOR guard mode)
     inline constexpr int npc_guard_hold_min_ms = 1200;  // ms: Shortest time an NPC keeps a guard
     inline constexpr int npc_guard_hold_max_ms = 2600;  // ms: Longest time an NPC keeps a guard
@@ -22,6 +23,7 @@ namespace tun {
     inline constexpr int opponent_max_distance = 900;  // game units: Farthest enemy whose guard the HUD shows (about 13 m)
     inline constexpr int hud_radius_px = 46;  // px at 1080p: Size of each guard indicator
     inline constexpr float sound_volume = 0.9f;  // 0-1: Master volume for FOR HONOR sounds
+    inline constexpr int notification_delay_ms = 8000;  // ms: Wait after the first player update before showing notifications, so they aren't lost behind the loading screen
 }
 
 enum class Snd : int { block_impact, hit_clash, none = -1 };
@@ -38,7 +40,7 @@ enum class Cmp : int { any, equal, different };
 struct RuleRow { Rule id; Cmp guards; bool victimNotAttacking; bool cancelHit; const char* attackerAnimEvent; Snd sound; };
 inline constexpr RuleRow kRules[] = {
     {Rule::not_a_duel, Cmp::any, false, false, nullptr, Snd::none},
-    {Rule::blocked, Cmp::equal, true, true, "recoilStart", Snd::block_impact},
+    {Rule::blocked, Cmp::equal, true, true, "recoilLargeStart,recoilStart,staggerStart", Snd::block_impact},
     {Rule::landed, Cmp::any, false, false, nullptr, Snd::hit_clash},
 };
 

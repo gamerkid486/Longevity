@@ -6,12 +6,14 @@
     {"id": "flick_threshold",      "system": "player_guard", "value": 40,   "unit": "mouse counts", "meaning": "Accumulated mouse movement while blocking needed to switch guard"},
     {"id": "flick_axis_dominance", "system": "player_guard", "value": 1.5,  "unit": "ratio",        "meaning": "Main axis must exceed the other by this ratio, so diagonal wobble does not switch"},
     {"id": "flick_decay_ms",       "system": "player_guard", "value": 250,  "unit": "ms",           "meaning": "Accumulated movement resets after this long without movement"},
+    {"id": "flick_cooldown_ms",    "system": "player_guard", "value": 150,  "unit": "ms",           "meaning": "Shortest time between two guard switches, so circling the mouse doesn't cycle guards"},
     {"id": "lock_camera_while_guarding", "system": "player_guard", "value": 1, "unit": "bool",      "meaning": "Mouse does not turn the camera while block is held (FOR HONOR guard mode)"},
     {"id": "npc_guard_hold_min_ms", "system": "npc_guard", "value": 1200, "unit": "ms",            "meaning": "Shortest time an NPC keeps a guard"},
     {"id": "npc_guard_hold_max_ms", "system": "npc_guard", "value": 2600, "unit": "ms",            "meaning": "Longest time an NPC keeps a guard"},
     {"id": "npc_mirror_chance",     "system": "npc_guard", "value": 0.45, "unit": "0-1",           "meaning": "Chance an NPC's next guard copies the player's guard (defends)"},
     {"id": "opponent_max_distance", "system": "hud",       "value": 900,  "unit": "game units",    "meaning": "Farthest enemy whose guard the HUD shows (about 13 m)"},
     {"id": "hud_radius_px",         "system": "hud",       "value": 46,   "unit": "px at 1080p",   "meaning": "Size of each guard indicator"},
-    {"id": "sound_volume",          "system": "sound",     "value": 0.9,  "unit": "0-1",           "meaning": "Master volume for FOR HONOR sounds"}
+    {"id": "sound_volume",          "system": "sound",     "value": 0.9,  "unit": "0-1",           "meaning": "Master volume for FOR HONOR sounds"},
+    {"id": "notification_delay_ms", "system": "hud",       "value": 8000, "unit": "ms",            "meaning": "Wait after the first player update before showing notifications, so they aren't lost behind the loading screen"}
   ]
 }

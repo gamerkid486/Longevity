@@ -40,7 +40,7 @@ broken reference and unused row before each build.
 ```
 ./build.sh          # gen + preflight + dist/FHDuels.asi (mingw-w64)
 ./build.sh test     # also builds build/selftest.exe (run it with wine64 or on Windows)
-./package.sh 0.1.3  # dist/FHDuels-0.1.3.zip
+./package.sh 0.1.4  # dist/FHDuels-0.1.4.zip
 python3 tools/resolve_offsets.py skyrimae.relib   # refresh per-version offsets
 ```
 

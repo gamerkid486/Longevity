@@ -37,7 +37,7 @@ namespace game {
     std::uint32_t CombatTargetHandle(Actor* a);
 
     // Main thread only.
-    void NotifyAnimation(Actor* a, const char* event);
+    bool NotifyAnimation(Actor* a, const char* event);  // false when the behavior graph rejects the event
     void Notification(const char* text);
 
     // ProcessLists::highActorHandles (main thread).

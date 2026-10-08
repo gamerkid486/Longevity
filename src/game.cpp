@@ -172,11 +172,11 @@ namespace game {
         return Field<std::uint32_t>(a, lay::actor_runtime + lay::actor_combat_target);
     }
 
-    void NotifyAnimation(Actor* a, const char* event)
+    bool NotifyAnimation(Actor* a, const char* event)
     {
         void* holder = reinterpret_cast<char*>(a) + lay::refr_anim_holder;
         using fn_t = bool (*)(void*, const FixedString*);
-        reinterpret_cast<fn_t>(VTable(holder)[1])(holder, Intern(event));
+        return reinterpret_cast<fn_t>(VTable(holder)[1])(holder, Intern(event));
     }
 
     void Notification(const char* text)

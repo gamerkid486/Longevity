@@ -1,6 +1,6 @@
 {
   "sheet": "rules",
-  "about": "Duel rules applied in the melee-hit hook. Checked top to bottom; first match wins.",
+  "about": "Duel rules applied in the melee-hit hook. Checked top to bottom; first match wins. attacker_anim_event is a comma-separated list tried in order until the attacker's behavior graph accepts one. A player victim only has a guard while holding block.",
   "columns": [
     "id",
     "when",
@@ -28,7 +28,7 @@
       "victim_guard_vs_attacker_guard": "equal",
       "requires_victim_not_attacking": true,
       "cancel_hit": true,
-      "attacker_anim_event": "recoilStart",
+      "attacker_anim_event": "recoilLargeStart,recoilStart,staggerStart",
       "sound": "block_impact",
       "notes": "Matching guard deflects the attack: no damage, attacker recoils"
     },

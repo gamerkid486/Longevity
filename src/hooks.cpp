@@ -44,15 +44,23 @@ namespace hooks {
         void UpdateHook(game::Actor* self, float delta)
         {
             g_origUpdate(self, delta);
-            if (g_updateCalls++ == 0) fhd::Log("hooks: first player update call");
+            static ULONGLONG firstUpdate = 0;
+            if (g_updateCalls++ == 0) {
+                fhd::Log("hooks: first player update call");
+                firstUpdate = GetTickCount64();
+            }
             if (self != game::Player()) return;
             duel::Tick();
+            if (GetTickCount64() - firstUpdate < ULONGLONG(tun::notification_delay_ms)) return;
             std::deque<std::string> msgs;
             {
                 std::lock_guard lk(g_msgLock);
                 msgs.swap(g_messages);
             }
-            for (const auto& m : msgs) game::Notification(m.c_str());
+            for (const auto& m : msgs) {
+                fhd::Log("notification: %s", m.c_str());
+                game::Notification(m.c_str());
+            }
         }
 
         // --- patching helpers ---------------------------------------------------------------

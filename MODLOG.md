@@ -94,6 +94,26 @@
 - Only 2 duel hits were logged in a whole fight. 0.1.3 logs skipped hits (no aggressor, dead victim)
   and the first NPC-vs-NPC hits, to find where the others went.
 
+## Run 4 (player's PC, 2026-10-08): the core loop works on 1.7.104
+- Working: DirectInput mouse hooks (A and W; the device is re-created after menus and loads, and the
+  hook survives that), guard flicks, the camera hold, the opponent indicator, hiding on sheathe
+  (`weapon state` 0 or 3), and `-> blocked` in both directions with no damage taken.
+- Not working: no visible recoil on the attacker after a block, and no top-left notification.
+- 0.1.4 changes:
+  - `attacker_anim_event` is now a list (`recoilLargeStart,recoilStart,staggerStart`), tried in
+    order. `NotifyAnimationGraph` returns whether the graph accepted the event, and the log says
+    which one did ("attacker reaction: ...").
+  - A player victim only has a guard while holding block. Before this, matched guards blocked even
+    when the player wasn't blocking.
+  - `flick_cooldown_ms` (150) between guard switches. Run 4 cycled Left/Top/Right every 50 to 150 ms
+    when the mouse was circled.
+  - Notifications wait `notification_delay_ms` (8 s) after the first player update. The startup one
+    was probably shown behind the loading screen. Each one shown is logged.
+  - "not a duel" hit lines now say who attacked. In run 4, `weapon not melee` hits came while weapons
+    were being drawn or sheathed.
+- Feature asks from the player: the camera should lock onto the opponent while guarding (FOR HONOR
+  guard mode). Not built yet.
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.

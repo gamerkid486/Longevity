@@ -26,6 +26,7 @@ namespace duel {
         std::atomic<bool> g_playerGuarding{ false };
         float g_accX = 0, g_accY = 0;
         ULONGLONG g_lastMove = 0;
+        ULONGLONG g_lastSwitch = 0;
 
         Snapshot g_snap;
         std::mutex g_snapLock;
@@ -145,10 +146,11 @@ namespace duel {
         int sx = 0, sy = 0;
         if (ax >= tun::flick_threshold && ax > ay * tun::flick_axis_dominance) sx = g_accX > 0 ? 1 : -1;
         else if (ay >= tun::flick_threshold && ay > ax * tun::flick_axis_dominance) sy = g_accY > 0 ? 1 : -1;
-        if (sx || sy) {
+        if ((sx || sy) && now - g_lastSwitch >= ULONGLONG(tun::flick_cooldown_ms)) {
             for (const auto& g : kGuards) {
                 if (g.flickDx == sx && g.flickDy == sy && g.id != g_playerGuard) {
                     g_playerGuard = g.id;
+                    g_lastSwitch = now;
                     fhd::Log("player guard -> %s", g.label);
                 }
             }
@@ -165,11 +167,13 @@ namespace duel {
             return RuleFor(Rule::not_a_duel).cancelHit;
         }
         if (!game::IsDuelist(victim) || !game::IsMeleeWeapon(weapon)) {
-            fhd::Log("melee hit: not a duel (victim %s, weapon %s)", game::DescribeDuelist(victim).c_str(),
+            fhd::Log("melee hit: not a duel (%s attacks, victim %s, weapon %s)", aggressor == player ? "player" : "npc",
+                game::DescribeDuelist(victim).c_str(),
                 game::IsMeleeWeapon(weapon) ? "melee" : "not melee");
             return RuleFor(Rule::not_a_duel).cancelHit;
         }
-        Guard vg = GuardOf(victim);
+        // The player only defends while holding block; NPCs always hold their guard.
+        Guard vg = victim == player && !g_playerGuarding ? Guard::none : GuardOf(victim);
         Guard ag = GuardOf(aggressor);
         bool victimAttacking = game::IsAttacking(victim);
 
@@ -183,7 +187,21 @@ namespace duel {
             hit->id == Rule::blocked ? "blocked" : "landed");
 
         if (hit->sound != Snd::none) audio::Play(hit->sound);
-        if (hit->attackerAnimEvent) game::NotifyAnimation(aggressor, hit->attackerAnimEvent);
+        if (hit->attackerAnimEvent) {
+            // Comma-separated: the first event the attacker's behavior graph accepts wins.
+            std::string list = hit->attackerAnimEvent, used = "none accepted";
+            for (std::size_t at = 0; at <= list.size();) {
+                std::size_t end = list.find(',', at);
+                if (end == std::string::npos) end = list.size();
+                std::string ev = list.substr(at, end - at);
+                if (!ev.empty() && game::NotifyAnimation(aggressor, ev.c_str())) {
+                    used = ev;
+                    break;
+                }
+                at = end + 1;
+            }
+            fhd::Log("attacker reaction: %s", used.c_str());
+        }
         return hit->cancelHit;
     }
 }
