@@ -1,0 +1,168 @@
+{
+  "sheet": "layouts",
+  "about": "Struct fields the plugin reads/writes, for Skyrim AE 1.6.629+ (CommonLibSSE-NG layouts).",
+  "columns": [
+    "id",
+    "struct",
+    "field",
+    "offset",
+    "type",
+    "source",
+    "verified_in_game"
+  ],
+  "rows": [
+    {
+      "id": "hit_aggressor",
+      "struct": "HitData",
+      "field": "aggressor",
+      "offset": 24,
+      "type": "uint32 handle",
+      "source": "HitData.h // 18",
+      "verified_in_game": false
+    },
+    {
+      "id": "hit_weapon",
+      "struct": "HitData",
+      "field": "weapon",
+      "offset": 48,
+      "type": "TESObjectWEAP*",
+      "source": "HitData.h // 30",
+      "verified_in_game": false
+    },
+    {
+      "id": "form_type",
+      "struct": "TESForm",
+      "field": "formType",
+      "offset": 26,
+      "type": "uint8",
+      "source": "TESForm.h // 1A",
+      "verified_in_game": false
+    },
+    {
+      "id": "form_id",
+      "struct": "TESForm",
+      "field": "formID",
+      "offset": 20,
+      "type": "uint32",
+      "source": "TESForm.h // 14",
+      "verified_in_game": false
+    },
+    {
+      "id": "refr_location",
+      "struct": "TESObjectREFR",
+      "field": "data.location",
+      "offset": 84,
+      "type": "float[3]",
+      "source": "TESObjectREFR.h data // 40 + OBJ_REFR.location // 14",
+      "verified_in_game": false
+    },
+    {
+      "id": "refr_handle_refobj",
+      "struct": "TESObjectREFR",
+      "field": "BSHandleRefObject",
+      "offset": 32,
+      "type": "subobject (refcount at +8, low 10 bits)",
+      "source": "TESObjectREFR.h base // 20; NiRefObject _refCount // 08",
+      "verified_in_game": false
+    },
+    {
+      "id": "refr_anim_holder",
+      "struct": "TESObjectREFR",
+      "field": "IAnimationGraphManagerHolder",
+      "offset": 56,
+      "type": "subobject; vfunc 1 NotifyAnimationGraph(const BSFixedString&)",
+      "source": "TESObjectREFR.h base // 38; IAnimationGraphManagerHolder.h // 01",
+      "verified_in_game": false
+    },
+    {
+      "id": "refr_vfunc_is_dead",
+      "struct": "TESObjectREFR",
+      "field": "vfunc IsDead(bool)",
+      "offset": 153,
+      "type": "vtable index",
+      "source": "TESObjectREFR.h // 99",
+      "verified_in_game": false
+    },
+    {
+      "id": "actor_runtime",
+      "struct": "Actor",
+      "field": "ACTOR_RUNTIME_DATA",
+      "offset": 232,
+      "type": "base of runtime data (AE 1.6.629+)",
+      "source": "Actor.h RelocateMemberIfNewer(1.6.629, 0xE0, 0xE8)",
+      "verified_in_game": false
+    },
+    {
+      "id": "actor_combat_target",
+      "struct": "Actor",
+      "field": "runtime.currentCombatTarget",
+      "offset": 252,
+      "type": "uint32 handle (relative to actor_runtime)",
+      "source": "Actor.h /* 0FC */",
+      "verified_in_game": false
+    },
+    {
+      "id": "actor_process",
+      "struct": "Actor",
+      "field": "runtime.currentProcess",
+      "offset": 240,
+      "type": "AIProcess* (relative to actor_runtime)",
+      "source": "Actor.h /* 0F0 */",
+      "verified_in_game": false
+    },
+    {
+      "id": "process_right_hand",
+      "struct": "AIProcess",
+      "field": "equippedObjects[kRight]",
+      "offset": 248,
+      "type": "TESForm*",
+      "source": "AIProcess.h equippedObjects // 0F0, Hand kLeft=0 kRight=1",
+      "verified_in_game": false
+    },
+    {
+      "id": "weap_anim_type",
+      "struct": "TESObjectWEAP",
+      "field": "weaponData.animationType",
+      "offset": 413,
+      "type": "uint8 (1-6 = melee weapons)",
+      "source": "TESObjectWEAP.h weaponData // 168 + animationType // 35",
+      "verified_in_game": false
+    },
+    {
+      "id": "weap_form_type_value",
+      "struct": "TESForm",
+      "field": "FormType::Weapon",
+      "offset": 41,
+      "type": "enum value (not an offset)",
+      "source": "FormTypes.h Weapon // 29",
+      "verified_in_game": false
+    },
+    {
+      "id": "lists_high_actors",
+      "struct": "ProcessLists",
+      "field": "highActorHandles",
+      "offset": 48,
+      "type": "BSTArray<uint32>: data +0, size +0x10",
+      "source": "ProcessLists.h // 030",
+      "verified_in_game": false
+    },
+    {
+      "id": "mouse_move_x",
+      "struct": "MouseMoveEvent",
+      "field": "mouseInputX",
+      "offset": 40,
+      "type": "int32",
+      "source": "MouseMoveEvent.h // 28",
+      "verified_in_game": false
+    },
+    {
+      "id": "mouse_move_y",
+      "struct": "MouseMoveEvent",
+      "field": "mouseInputY",
+      "offset": 44,
+      "type": "int32",
+      "source": "MouseMoveEvent.h // 2C",
+      "verified_in_game": false
+    }
+  ]
+}

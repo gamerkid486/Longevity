@@ -1,0 +1,31 @@
+{
+  "sheet": "games",
+  "about": "Every game the mashup joins and how it is in it.",
+  "columns": ["id", "melty_slug", "role", "what_it_brings", "how_it_is_read", "store_ids", "exe", "versions_supported", "anti_cheat", "modified_by_mod"],
+  "rows": [
+    {
+      "id": "skyrim",
+      "melty_slug": "skyrim-se",
+      "role": "primary",
+      "what_it_brings": "The world, enemies, weapons and melee combat the duels happen in",
+      "how_it_is_read": "ASI plugin loaded by Ultimate ASI Loader inside SkyrimSE.exe",
+      "store_ids": {"steam": 489830},
+      "exe": "SkyrimSE.exe",
+      "versions_supported": ["1.6.640.0", "1.6.659.0", "1.6.1130.0", "1.6.1170.0", "1.6.1179.0"],
+      "anti_cheat": "none (offline single-player)",
+      "modified_by_mod": true
+    },
+    {
+      "id": "forhonor",
+      "melty_slug": "for-honor",
+      "role": "secondary",
+      "what_it_brings": "Its real block and clash sound effects, played on every duel exchange",
+      "how_it_is_read": "Plugin finds the FOR HONOR install (Steam libraryfolders.vdf / Ubisoft Connect registry), reads Wwise .pck sound packs from disk, converts the listed sounds to WAV in a local cache",
+      "store_ids": {"steam": 304390, "ubisoft_connect": "scan Installs registry for ForHonor.exe"},
+      "exe": "ForHonor.exe",
+      "versions_supported": ["any current PC release (files read only)"],
+      "anti_cheat": "EasyAntiCheat (online-only game)",
+      "modified_by_mod": false
+    }
+  ]
+}

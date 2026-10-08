@@ -1,0 +1,204 @@
+{
+  "sheet": "game_addresses",
+  "about": "Skyrim AE functions/data the plugin touches. ae_id = Address Library ID (CommonLibSSE-NG naming). Offsets per game version are filled by tools/resolve_offsets.py from meh321's public AddressLibraryDatabase; never typed by hand.",
+  "columns": [
+    "id",
+    "kind",
+    "ae_id",
+    "call_offset_hint",
+    "vfunc_index",
+    "c_signature",
+    "source",
+    "offsets",
+    "verified_in_game"
+  ],
+  "rows": [
+    {
+      "id": "player_singleton",
+      "kind": "data",
+      "ae_id": 403521,
+      "call_offset_hint": "n/a",
+      "vfunc_index": "n/a",
+      "c_signature": "void** (PlayerCharacter**)",
+      "source": "CommonLibSSE-NG PlayerCharacter.h RELOCATION_ID(517014, 403521)",
+      "offsets": {
+        "1.6.640.0": "0x2fc1b78",
+        "1.6.659.0": "0x2fbbb58",
+        "1.6.1130.0": "0x316e198",
+        "1.6.1170.0": "0x31874f8",
+        "1.6.1179.0": "0x3188918"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "process_lists",
+      "kind": "data",
+      "ae_id": 400315,
+      "call_offset_hint": "n/a",
+      "vfunc_index": "n/a",
+      "c_signature": "void** (ProcessLists**)",
+      "source": "CommonLibSSE-NG ProcessLists.cpp RELOCATION_ID(514167, 400315)",
+      "offsets": {
+        "1.6.640.0": "0x1f587d0",
+        "1.6.659.0": "0x1f527d0",
+        "1.6.1130.0": "0x20e96b0",
+        "1.6.1170.0": "0x20f69b0",
+        "1.6.1179.0": "0x20f7db0"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "melee_hit_caller",
+      "kind": "call_site",
+      "ae_id": 38627,
+      "call_offset_hint": 1192,
+      "vfunc_index": "n/a",
+      "c_signature": "site of call ProcessHit(Actor* victim, HitData* hit)",
+      "source": "valhallaCombat Hooks.h RELOCATION_ID(37673, 38627) + RELOCATION_OFFSET(0x3C0, 0x4A8)",
+      "offsets": {
+        "1.6.640.0": "0x660a70",
+        "1.6.659.0": "0x660570",
+        "1.6.1130.0": "0x6bad60",
+        "1.6.1170.0": "0x6ba870",
+        "1.6.1179.0": "0x6bcaa0"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "process_hit",
+      "kind": "function",
+      "ae_id": 38586,
+      "call_offset_hint": "n/a",
+      "vfunc_index": "n/a",
+      "c_signature": "void (Actor* victim, HitData* hit)",
+      "source": "callee of melee_hit_caller; valhallaCombat comment 14064BAB0 = ID 38586 in 1.6.317/318 (AddressLibraryDatabase)",
+      "offsets": {
+        "1.6.640.0": "0x65ddc0",
+        "1.6.659.0": "0x65d8c0",
+        "1.6.1130.0": "0x6b80b0",
+        "1.6.1170.0": "0x6b7bc0",
+        "1.6.1179.0": "0x6b9df0"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "get_smart_pointer",
+      "kind": "function",
+      "ae_id": 12332,
+      "call_offset_hint": "n/a",
+      "vfunc_index": "n/a",
+      "c_signature": "bool (const uint32_t* handle, void** outActor)",
+      "source": "CommonLibSSE-NG BSPointerHandle.h RELOCATION_ID(12204, 12332)",
+      "offsets": {
+        "1.6.640.0": "0x13ae30",
+        "1.6.659.0": "0x13ac30",
+        "1.6.1130.0": "0x179620",
+        "1.6.1170.0": "0x179710",
+        "1.6.1179.0": "0x179540"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "actor_is_blocking",
+      "kind": "function",
+      "ae_id": 37952,
+      "call_offset_hint": "n/a",
+      "vfunc_index": "n/a",
+      "c_signature": "bool (const Actor*)",
+      "source": "CommonLibSSE-NG Actor.cpp RELOCATION_ID(36927, 37952)",
+      "offsets": {
+        "1.6.640.0": "0x6425f0",
+        "1.6.659.0": "0x6420f0",
+        "1.6.1130.0": "0x69c8d0",
+        "1.6.1170.0": "0x69c3e0",
+        "1.6.1179.0": "0x69e610"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "actor_is_attacking",
+      "kind": "function",
+      "ae_id": 38590,
+      "call_offset_hint": "n/a",
+      "vfunc_index": "n/a",
+      "c_signature": "bool (const Actor*)",
+      "source": "CommonLibSSE-NG Actor.cpp RELOCATION_ID(37637, 38590)",
+      "offsets": {
+        "1.6.640.0": "0x65f0a0",
+        "1.6.659.0": "0x65eba0",
+        "1.6.1130.0": "0x6b9390",
+        "1.6.1170.0": "0x6b8ea0",
+        "1.6.1179.0": "0x6bb0d0"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "fixedstring_ctor",
+      "kind": "function",
+      "ae_id": 69161,
+      "call_offset_hint": "n/a",
+      "vfunc_index": "n/a",
+      "c_signature": "void* (BSFixedString* self, const char*) (strings built once at startup and kept for the session)",
+      "source": "CommonLibSSE-NG BSFixedString.h ctor8 RELOCATION_ID(67819, 69161)",
+      "offsets": {
+        "1.6.640.0": "0xc61360",
+        "1.6.659.0": "0xc60ac0",
+        "1.6.1130.0": "0xce7d90",
+        "1.6.1170.0": "0xcec5d0",
+        "1.6.1179.0": "0xcedff0"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "debug_notification",
+      "kind": "function",
+      "ae_id": 52933,
+      "call_offset_hint": "n/a",
+      "vfunc_index": "n/a",
+      "c_signature": "void (const char* text, const char* sound, bool cancelIfQueued)",
+      "source": "CommonLibSSE-NG Offsets.h DebugNotification RELOCATION_ID(52050, 52933)",
+      "offsets": {
+        "1.6.640.0": "0x91bc70",
+        "1.6.659.0": "0x91b3e0",
+        "1.6.1130.0": "0x97aa30",
+        "1.6.1170.0": "0x97a5e0",
+        "1.6.1179.0": "0x97c0b0"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "vtbl_look_handler",
+      "kind": "vtable",
+      "ae_id": 208710,
+      "call_offset_hint": "n/a",
+      "vfunc_index": 3,
+      "c_signature": "void ProcessMouseMove(LookHandler*, MouseMoveEvent*, PlayerControlsData*)",
+      "source": "CommonLibSSE-NG Offsets_VTABLE.h VTABLE_LookHandler; PlayerInputHandler.h index 03",
+      "offsets": {
+        "1.6.640.0": "0x1765fb8",
+        "1.6.659.0": "0x1760fa8",
+        "1.6.1130.0": "0x18acd88",
+        "1.6.1170.0": "0x18b6d18",
+        "1.6.1179.0": "0x18b80c8"
+      },
+      "verified_in_game": false
+    },
+    {
+      "id": "vtbl_player_character",
+      "kind": "vtable",
+      "ae_id": 208040,
+      "call_offset_hint": "n/a",
+      "vfunc_index": 173,
+      "c_signature": "void Update(PlayerCharacter*, float delta)",
+      "source": "CommonLibSSE-NG Offsets_VTABLE.h VTABLE_PlayerCharacter[0]; Actor.h Update // 0AD",
+      "offsets": {
+        "1.6.640.0": "0x175ac70",
+        "1.6.659.0": "0x1755c50",
+        "1.6.1130.0": "0x18a1a30",
+        "1.6.1170.0": "0x18ab9c0",
+        "1.6.1179.0": "0x18acd70"
+      },
+      "verified_in_game": false
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "sheet": "deps",
+  "about": "Everything the build or the release uses that someone else made.",
+  "columns": [
+    "id",
+    "what",
+    "author",
+    "license",
+    "how_used",
+    "shipped_in_release",
+    "source_url",
+    "version"
+  ],
+  "rows": [
+    {
+      "id": "ultimate_asi_loader",
+      "what": "Loads .asi plugins into SkyrimSE.exe",
+      "author": "ThirteenAG",
+      "license": "MIT",
+      "how_used": "Melty installs it (recipe loader)",
+      "shipped_in_release": false,
+      "source_url": "https://github.com/ThirteenAG/Ultimate-ASI-Loader",
+      "version": "installed by Melty"
+    },
+    {
+      "id": "imgui",
+      "what": "Draws the guard indicators",
+      "author": "Omar Cornut",
+      "license": "MIT",
+      "how_used": "compiled into FHDuels.asi",
+      "shipped_in_release": true,
+      "source_url": "https://github.com/ocornut/imgui",
+      "version": "v1.91.9"
+    },
+    {
+      "id": "vgmstream",
+      "what": "Decodes FOR HONOR's Wwise .wem sounds to WAV on the player's PC",
+      "author": "vgmstream contributors",
+      "license": "ISC-style (COPYING); bundled FFmpeg DLLs LGPL-2.1, libvorbis BSD, mpg123 LGPL",
+      "how_used": "vgmstream-cli.exe run once per sound at first launch",
+      "shipped_in_release": true,
+      "source_url": "https://github.com/vgmstream/vgmstream/releases",
+      "version": "r2117 (vgmstream-win64.zip sha256 6c4a8a3813864fefed081bbd337dbc0ad93bf88e0b92f5db98d7ab258b22dc6c)"
+    },
+    {
+      "id": "commonlibsse_ng",
+      "what": "Reference for Skyrim struct layouts and Address Library IDs",
+      "author": "Ryan-rsm-McKenzie, CharmedBaryon and contributors",
+      "license": "MIT",
+      "how_used": "read only; numbers copied into sheets with source notes",
+      "shipped_in_release": false,
+      "source_url": "https://github.com/CharmedBaryon/CommonLibSSE-NG",
+      "version": "b93280e"
+    },
+    {
+      "id": "valhalla_combat",
+      "what": "Reference for the melee-hit hook site",
+      "author": "D7ry",
+      "license": "see repo",
+      "how_used": "read only",
+      "shipped_in_release": false,
+      "source_url": "https://github.com/D7ry/valhallaCombat",
+      "version": "HEAD 2026-10"
+    },
+    {
+      "id": "address_library_database",
+      "what": "Address Library ID to offset tables per Skyrim AE version",
+      "author": "meh321",
+      "license": "public repository, no license file; offsets (facts) embedded, files not shipped",
+      "how_used": "tools/resolve_offsets.py fills game_addresses.offsets",
+      "shipped_in_release": false,
+      "source_url": "https://github.com/meh321/AddressLibraryDatabase",
+      "version": "HEAD 2026-10"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "sheet": "package",
+  "about": "Files in the release and where Melty installs them.",
+  "columns": [
+    "id",
+    "file",
+    "built_by",
+    "destination",
+    "required"
+  ],
+  "rows": [
+    {
+      "id": "plugin",
+      "file": "FHDuels.asi",
+      "built_by": "build.sh (mingw-w64)",
+      "destination": "{game}/FHDuels.asi",
+      "required": true
+    },
+    {
+      "id": "vgmstream",
+      "file": "FHDuels/vgmstream/*",
+      "built_by": "fetched from vgmstream releases",
+      "destination": "{game}/FHDuels/vgmstream/",
+      "required": true
+    },
+    {
+      "id": "licenses",
+      "file": "FHDuels/licenses/*",
+      "built_by": "collected from deps",
+      "destination": "{game}/FHDuels/licenses/",
+      "required": true
+    }
+  ]
+}

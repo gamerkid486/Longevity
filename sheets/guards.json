@@ -1,0 +1,57 @@
+{
+  "sheet": "guards",
+  "about": "The three FOR HONOR guard stances. A guard is also the direction your attacks come from. hud_angle_deg uses maths convention (0 = right, 90 = up).",
+  "columns": [
+    "id",
+    "code",
+    "label",
+    "flick_dx",
+    "flick_dy",
+    "hud_angle_deg",
+    "hud_color_rgba"
+  ],
+  "rows": [
+    {
+      "id": "top",
+      "code": 1,
+      "label": "Top",
+      "flick_dx": 0,
+      "flick_dy": -1,
+      "hud_angle_deg": 90,
+      "hud_color_rgba": [
+        255,
+        255,
+        255,
+        230
+      ]
+    },
+    {
+      "id": "left",
+      "code": 2,
+      "label": "Left",
+      "flick_dx": -1,
+      "flick_dy": 0,
+      "hud_angle_deg": 210,
+      "hud_color_rgba": [
+        255,
+        255,
+        255,
+        230
+      ]
+    },
+    {
+      "id": "right",
+      "code": 3,
+      "label": "Right",
+      "flick_dx": 1,
+      "flick_dy": 0,
+      "hud_angle_deg": 330,
+      "hud_color_rgba": [
+        255,
+        255,
+        255,
+        230
+      ]
+    }
+  ]
+}

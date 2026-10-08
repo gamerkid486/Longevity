@@ -1,0 +1,46 @@
+{
+  "sheet": "rules",
+  "about": "Duel rules applied in the melee-hit hook. Checked top to bottom; first match wins.",
+  "columns": [
+    "id",
+    "when",
+    "victim_guard_vs_attacker_guard",
+    "requires_victim_not_attacking",
+    "cancel_hit",
+    "attacker_anim_event",
+    "sound",
+    "notes"
+  ],
+  "rows": [
+    {
+      "id": "not_a_duel",
+      "when": "the player is not one of the two fighters, or either fighter is not a duelist (no melee weapon in right hand)",
+      "victim_guard_vs_attacker_guard": "any",
+      "requires_victim_not_attacking": false,
+      "cancel_hit": false,
+      "attacker_anim_event": "none",
+      "sound": "none",
+      "notes": "NPC-vs-NPC fights, creatures, unarmed, bows and magic keep vanilla Skyrim behaviour"
+    },
+    {
+      "id": "blocked",
+      "when": "both duelists",
+      "victim_guard_vs_attacker_guard": "equal",
+      "requires_victim_not_attacking": true,
+      "cancel_hit": true,
+      "attacker_anim_event": "recoilStart",
+      "sound": "block_impact",
+      "notes": "Matching guard deflects the attack: no damage, attacker recoils"
+    },
+    {
+      "id": "landed",
+      "when": "both duelists",
+      "victim_guard_vs_attacker_guard": "any",
+      "requires_victim_not_attacking": false,
+      "cancel_hit": false,
+      "attacker_anim_event": "none",
+      "sound": "hit_clash",
+      "notes": "Anything not blocked (wrong guard, or victim mid-attack) lands with normal Skyrim damage"
+    }
+  ]
+}

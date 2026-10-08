@@ -1,0 +1,33 @@
+{
+  "sheet": "sounds",
+  "about": "FOR HONOR sounds read from the player's own install. wem_ids must be picked from the user's copy (run FHDuels with FHDUELS_DUMP_INDEX=1 to list them).",
+  "columns": [
+    "id",
+    "used_by_rule",
+    "fh_pck",
+    "wem_ids",
+    "volume",
+    "cache_file",
+    "verified_in_game"
+  ],
+  "rows": [
+    {
+      "id": "block_impact",
+      "used_by_rule": "blocked",
+      "fh_pck": "",
+      "wem_ids": [],
+      "volume": 1.0,
+      "cache_file": "fh_{id}.wav",
+      "verified_in_game": false
+    },
+    {
+      "id": "hit_clash",
+      "used_by_rule": "landed",
+      "fh_pck": "",
+      "wem_ids": [],
+      "volume": 0.8,
+      "cache_file": "fh_{id}.wav",
+      "verified_in_game": false
+    }
+  ]
+}
