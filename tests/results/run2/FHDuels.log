@@ -1,0 +1,32 @@
+[21:25:10.685] SkyrimSE.exe 1.7.104.0 supported
+[21:25:14.049] hooks: vtbl_look_handler[0x3] -> +0x7B32A0
+[21:25:14.049] hooks: vtbl_player_character[0xAD] -> +0x745200
+[21:25:14.049] hooks: hit call at +0x4A8, look handler and player update patched
+[21:25:14.145] forhonor: install at c:/program files (x86)/steam\steamapps\common\For Honor
+[21:25:14.200] forhonor: soundpc_00_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.202] forhonor: soundpc_00_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.205] forhonor: soundpc_00_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.208] forhonor: soundpc_00_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.211] forhonor: soundpc_00_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.214] forhonor: soundpc_00_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.216] forhonor: soundpc_00_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.219] forhonor: soundpc_00_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.222] forhonor: soundpc_00_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.225] forhonor: soundpc_00_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.227] forhonor: soundpc_01_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.232] forhonor: soundpc_01_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.234] forhonor: soundpc_01_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.237] forhonor: soundpc_01_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.239] forhonor: soundpc_01_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.242] forhonor: soundpc_01_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.244] forhonor: soundpc_01_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.248] forhonor: soundpc_01_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.250] forhonor: soundpc_01_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.253] forhonor: soundpc_01_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.255] forhonor: soundpc_01_ab_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[21:25:14.258] forhonor: 0 sound pack(s), 0 sounds indexed
+[21:25:14.259] forhonor: wrote index.csv
+[21:25:14.288] audio: 0 clip(s) loaded for sound 0
+[21:25:14.288] audio: 0 clip(s) loaded for sound 1
+[21:25:14.288] forhonor: 0 of 0 sounds ready
+[21:25:14.426] overlay: ready
