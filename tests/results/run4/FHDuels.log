@@ -1,0 +1,204 @@
+[05:14:53.644] SkyrimSE.exe 1.7.104.0 supported
+[05:14:57.259] hooks: vtbl_player_character[0xAD] -> +0x745200
+[05:14:57.259] hooks: hit call at +0x4A8 and player update patched
+[05:14:57.259] input: DirectInput mouse hooks A/W
+[05:14:57.284] overlay: ready
+[05:14:57.291] forhonor: install at c:/program files (x86)/steam\steamapps\common\For Honor
+[05:14:57.391] forhonor: soundpc_00_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.392] forhonor: soundpc_00_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.392] forhonor: soundpc_00_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.392] forhonor: soundpc_00_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.393] forhonor: soundpc_00_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.393] forhonor: soundpc_00_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.393] forhonor: soundpc_00_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.394] forhonor: soundpc_00_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.394] forhonor: soundpc_00_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.395] forhonor: soundpc_00_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.395] forhonor: soundpc_01_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.395] forhonor: soundpc_01_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.396] forhonor: soundpc_01_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.396] forhonor: soundpc_01_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.397] forhonor: soundpc_01_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.397] forhonor: soundpc_01_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.398] forhonor: soundpc_01_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.398] forhonor: soundpc_01_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.398] forhonor: soundpc_01_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.399] forhonor: soundpc_01_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.399] forhonor: soundpc_01_ab_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[05:14:57.403] forhonor: 0 sound pack(s), 0 sounds indexed
+[05:14:57.425] audio: 0 clip(s) loaded for sound 0
+[05:14:57.425] audio: 0 clip(s) loaded for sound 1
+[05:14:57.425] forhonor: 0 of 0 sounds ready
+[05:15:03.083] input: mouse device found
+[05:15:03.083] input: GetDeviceState mouse 0 0
+[05:15:03.325] input: GetDeviceState mouse 0 -1
+[05:15:03.327] input: GetDeviceState mouse 0 0
+[05:15:18.752] hooks: first player update call
+[05:16:11.015] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[05:16:12.781] player guarding: yes
+[05:16:12.932] player guard -> Right
+[05:16:13.432] player guard -> Left
+[05:16:13.866] player guard -> Right
+[05:16:14.198] player guard -> Left
+[05:16:15.315] player guard -> Top
+[05:16:16.015] player guarding: no
+[05:16:50.997] opponent: found
+[05:16:51.014] overlay: drawing the opponent indicator
+[05:16:51.365] hooks: first melee hit call
+[05:16:51.365] melee hit: npc vs npc, not a duel
+[05:16:51.714] player guarding: yes
+[05:16:51.981] player guard -> Right
+[05:16:52.364] player guarding: no
+[05:16:52.649] melee hit: npc vs npc, not a duel
+[05:16:52.650] melee hit: npc vs npc, not a duel
+[05:16:53.214] player guarding: yes
+[05:16:53.282] player guard -> Left
+[05:16:53.632] player guard -> Right
+[05:16:53.815] melee hit: npc vs npc, not a duel
+[05:16:54.250] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[05:16:54.365] player guard -> Left
+[05:16:55.064] player guarding: no
+[05:16:55.281] player guarding: yes
+[05:16:55.565] player guard -> Right
+[05:16:56.531] player guard -> Left
+[05:16:57.115] player guard -> Top
+[05:16:57.282] player guard -> Left
+[05:16:57.665] melee hit: npc vs npc, not a duel
+[05:16:58.366] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:16:58.415] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[05:16:58.849] melee hit: npc vs npc, not a duel
+[05:16:59.599] player guard -> Right
+[05:17:00.215] melee hit: npc vs npc, not a duel
+[05:17:01.365] melee hit: npc vs npc, not a duel
+[05:17:02.782] player guard -> Top
+[05:17:03.182] melee hit: npc vs npc, not a duel
+[05:17:03.382] melee hit: npc attacks player, guards 2 vs 1 -> landed
+[05:17:04.715] player guard -> Left
+[05:17:04.765] player guard -> Top
+[05:17:05.498] melee hit: npc vs npc, not a duel
+[05:17:05.515] melee hit: npc attacks player, guards 2 vs 1 -> landed
+[05:17:06.983] player guard -> Right
+[05:17:07.499] player guard -> Top
+[05:17:08.182] player guard -> Right
+[05:17:08.247] player guarding: no
+[05:17:08.465] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[05:17:08.664] player guarding: yes
+[05:17:08.682] player guard -> Top
+[05:17:09.082] player guard -> Right
+[05:17:09.330] player guarding: no
+[05:17:12.197] opponent: none
+[05:20:01.617] input: mouse device found
+[05:20:10.490] player duelist: no (right hand empty)
+[05:21:00.980] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[05:21:02.896] player guarding: yes
+[05:21:02.931] player guard -> Left
+[05:21:03.564] player guard -> Top
+[05:21:03.965] player guard -> Right
+[05:21:04.314] player guard -> Left
+[05:21:04.548] player guard -> Top
+[05:21:04.697] player guard -> Right
+[05:21:05.031] player guard -> Left
+[05:21:05.197] player guard -> Top
+[05:21:05.298] player guard -> Right
+[05:21:05.531] player guard -> Left
+[05:21:05.647] player guard -> Top
+[05:21:05.731] player guard -> Right
+[05:21:05.914] player guard -> Left
+[05:21:05.997] player guard -> Top
+[05:21:06.064] player guard -> Right
+[05:21:06.214] player guard -> Left
+[05:21:06.297] player guard -> Top
+[05:21:06.347] player guard -> Right
+[05:21:06.464] player guard -> Left
+[05:21:06.564] player guard -> Top
+[05:21:06.581] player guard -> Right
+[05:21:06.715] player guard -> Left
+[05:21:06.781] player guard -> Top
+[05:21:06.797] player guard -> Right
+[05:21:06.964] player guard -> Left
+[05:21:07.047] player guard -> Top
+[05:21:07.114] player guard -> Right
+[05:21:07.914] player guard -> Left
+[05:21:07.931] player guard -> Top
+[05:21:08.614] player guarding: no
+[05:21:12.762] player guarding: yes
+[05:21:12.815] player guard -> Left
+[05:21:13.231] player guard -> Right
+[05:21:13.548] player guard -> Top
+[05:21:14.163] player guarding: no
+[05:21:47.432] melee hit: not a duel (victim right hand form 000135B8 type 0x29 anim 1, weapon state 2, weapon melee)
+[05:21:47.613] opponent: found
+[05:21:48.946] player guarding: yes
+[05:21:49.364] player guard -> Left
+[05:21:50.015] player guard -> Right
+[05:21:50.365] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[05:21:50.430] player guarding: no
+[05:21:50.531] melee hit: not a duel (victim right hand form 000135B8 type 0x29 anim 1, weapon state 3, weapon not melee)
+[05:21:51.664] melee hit: npc attacks player, guards 2 vs 3 (victim mid-attack) -> landed
+[05:21:51.998] melee hit: player attacks npc, guards 3 vs 2 -> landed
+[05:21:53.348] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[05:21:53.830] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[05:21:54.297] melee hit: player attacks npc, guards 3 vs 2 (victim mid-attack) -> landed
+[05:21:56.314] melee hit: npc attacks player, guards 3 vs 3 (victim mid-attack) -> landed
+[05:21:56.648] melee hit: player attacks npc, guards 3 vs 3 (victim mid-attack) -> landed
+[05:21:58.030] player guarding: yes
+[05:21:58.048] player guard -> Left
+[05:21:58.462] player guarding: no
+[05:21:58.797] melee hit: npc attacks player, guards 3 vs 2 (victim mid-attack) -> landed
+[05:21:58.898] melee hit: player attacks npc, guards 2 vs 3 (victim mid-attack) -> landed
+[05:22:00.263] player guarding: yes
+[05:22:00.281] player guard -> Top
+[05:22:01.397] player guard -> Left
+[05:22:01.512] player guarding: no
+[05:22:01.896] opponent: none
+[05:22:19.568] input: mouse device found
+[05:22:43.680] melee hit: not a duel (victim right hand form 000135B8 type 0x29 anim 1, weapon state 2, weapon melee)
+[05:22:43.879] opponent: found
+[05:22:44.912] player guarding: yes
+[05:22:45.180] player guard -> Top
+[05:22:45.746] player guarding: no
+[05:22:45.947] melee hit: npc attacks player, guards 2 vs 1 -> landed
+[05:22:46.580] melee hit: player attacks npc, guards 1 vs 1 -> blocked
+[05:22:47.446] player guarding: yes
+[05:22:47.465] player guard -> Right
+[05:22:48.846] player guarding: no
+[05:22:49.314] melee hit: player attacks npc, guards 3 vs 3 -> blocked
+[05:22:50.030] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[05:22:50.646] player guarding: yes
+[05:22:50.697] player guard -> Left
+[05:22:51.114] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:22:51.430] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:22:51.447] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:22:52.012] player guarding: no
+[05:22:52.581] melee hit: player attacks npc, guards 2 vs 2 (victim mid-attack) -> landed
+[05:22:53.030] melee hit: npc attacks player, guards 2 vs 2 (victim mid-attack) -> landed
+[05:22:54.564] melee hit: player attacks npc, guards 2 vs 2 -> blocked
+[05:22:55.763] player guarding: yes
+[05:22:56.297] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[05:22:56.996] player guarding: no
+[05:22:57.447] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[05:22:57.912] player guarding: yes
+[05:22:58.648] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:22:58.747] player guard -> Top
+[05:22:59.030] player guarding: no
+[05:22:59.598] melee hit: player attacks npc, guards 1 vs 2 -> landed
+[05:23:01.064] melee hit: player attacks npc, guards 1 vs 1 -> blocked
+[05:23:01.796] player guarding: yes
+[05:23:01.797] player guard -> Right
+[05:23:01.797] melee hit: npc attacks player, guards 1 vs 3 -> landed
+[05:23:02.298] player guard -> Left
+[05:23:02.380] player guarding: no
+[05:23:02.497] melee hit: npc attacks player, guards 3 vs 2 (victim mid-attack) -> landed
+[05:23:02.730] melee hit: player attacks npc, guards 2 vs 3 (victim mid-attack) -> landed
+[05:23:03.513] player guarding: yes
+[05:23:03.647] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[05:23:03.846] player guarding: no
+[05:23:04.197] melee hit: player attacks npc, guards 2 vs 3 (victim mid-attack) -> landed
+[05:23:04.713] opponent: none
+[05:24:13.435] input: mouse device found
+[05:24:16.828] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[05:24:18.613] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[05:24:37.752] input: mouse device found
+[05:24:40.613] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[05:25:03.047] melee hit: not a duel (victim right hand form 00013790 type 0x29 anim 3, weapon state 0, weapon not melee)
+[05:25:32.833] input: mouse device found
