@@ -1,0 +1,69 @@
+[21:52:15.441] SkyrimSE.exe 1.7.104.0 supported
+[21:52:18.766] hooks: vtbl_look_handler[0x3] -> +0x7B32A0
+[21:52:18.766] hooks: vtbl_player_character[0xAD] -> +0x745200
+[21:52:18.766] hooks: hit call at +0x4A8, look handler and player update patched
+[21:52:18.800] forhonor: install at c:/program files (x86)/steam\steamapps\common\For Honor
+[21:52:18.809] overlay: ready
+[21:52:18.841] forhonor: soundpc_00_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.841] forhonor: soundpc_00_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.841] forhonor: soundpc_00_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_00_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_00_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_00_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_00_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_00_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_00_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_00_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.842] forhonor: soundpc_01_ab_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[21:52:18.843] forhonor: 0 sound pack(s), 0 sounds indexed
+[21:52:18.843] forhonor: wrote index.csv
+[21:52:18.862] audio: 0 clip(s) loaded for sound 0
+[21:52:18.862] audio: 0 clip(s) loaded for sound 1
+[21:52:18.862] forhonor: 0 of 0 sounds ready
+[21:52:42.114] hooks: first player update call
+[21:53:48.262] player duelist: yes (right hand form 00013790 type 0x29 anim 3)
+[21:54:29.311] player guarding: yes
+[21:54:30.495] player guarding: no
+[21:54:31.062] player guarding: yes
+[21:54:35.462] player guarding: no
+[21:54:42.079] opponent: found
+[21:54:43.729] player guarding: yes
+[21:54:44.530] hooks: first melee hit call
+[21:55:32.814] melee hit: npc attacks player, guards 2 vs 1 -> landed
+[21:55:33.078] player guarding: no
+[21:55:34.078] opponent: none
+[21:55:37.195] player guarding: yes
+[21:55:38.012] player guarding: no
+[21:55:38.645] player guarding: yes
+[21:55:39.778] player guarding: no
+[21:55:41.396] melee hit: player attacks npc, guards 1 vs 1 -> landed
+[21:55:42.378] player guarding: yes
+[21:55:43.211] player guarding: no
+[21:55:43.295] player guarding: yes
+[21:55:44.312] player guarding: no
+[21:55:44.778] player guarding: yes
+[21:55:45.012] player guarding: no
+[21:55:45.228] player guarding: yes
+[21:55:45.545] player guarding: no
+[21:55:46.528] player guarding: yes
+[21:55:46.862] player guarding: no
+[21:55:47.045] player guarding: yes
+[21:55:47.362] player guarding: no
+[21:55:47.695] player guarding: yes
+[21:55:48.445] player guarding: no
+[21:58:26.994] player guarding: yes
+[21:58:27.694] player guarding: no
+[21:58:31.044] player guarding: yes
+[21:58:31.928] player guarding: no
+[21:58:32.011] player guarding: yes
+[21:58:33.911] player guarding: no
