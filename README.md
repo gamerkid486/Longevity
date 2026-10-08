@@ -10,7 +10,8 @@ self-test, and the plugin loads and safely switches itself off outside Skyrim. N
 
 - Hold block and flick the mouse up, left or right to choose your guard: Top, Left or Right. While you're
   guarding, the camera locks onto your opponent instead of following the mouse, as in FOR HONOR's guard
-  mode.
+  mode. The target is chosen when you start blocking (the closest enemy in front of you) and kept
+  until you let go of block.
 - Your guard is also the direction you attack from.
 - Every armed melee enemy (bandits, draugr, guards and so on) also takes a guard and switches between
   them as it fights you.
@@ -43,7 +44,7 @@ broken reference and unused row before each build.
 ```
 ./build.sh          # gen + preflight + dist/FHDuels.asi (mingw-w64)
 ./build.sh test     # also builds build/selftest.exe (run it with wine64 or on Windows)
-./package.sh 0.1.7  # dist/FHDuels-0.1.7.zip
+./package.sh 0.1.8  # dist/FHDuels-0.1.8.zip
 python3 tools/resolve_offsets.py skyrimae.relib   # refresh per-version offsets
 ```
 

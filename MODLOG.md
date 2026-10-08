@@ -187,6 +187,29 @@
   camera. Following the enemy's actual screen position would need a world-to-screen projection
   (camera addresses), which isn't built.
 
+## Run 8 (player's PC, 2026-10-08): torso height is right; lock-on target fixes in 0.1.8
+- The enemy indicator at `anchor_y` 0.40 is "about right" over the torso and doesn't hide attacks.
+- The player reported: (1) the camera "almost did a 180" to a dagger-wielding spellcaster mid-block.
+  The log shows a new opponent picked mid-hold at 143° off, because the nearest duelist was
+  re-picked every frame. (2) Some enemies couldn't be locked on: lock-on only followed duelists,
+  and one enemy had a spell (form type 0x16) in its right hand. (3) The left guard was briefly
+  stuck. There's no clear cause in the log; the guard cycled Left→Top→Right every 0.2 to 0.3 s,
+  which looks like circling. The player asked for the lock-on target to change only after block is
+  released.
+- 0.1.8 changes:
+  - The lock-on target is picked once per block hold, from every living actor fighting the player
+    within `opponent_max_distance`, not just duelists. The score is distance × (1 + |angle|/90°),
+    so enemies in front win. It's kept until block is released. If it dies or goes past
+    `lock_on_break_distance` (1400), it's let go, and there's no new target until the next hold.
+    A first target can still be picked mid-hold if nobody was fighting the player when block
+    started.
+  - The opponent indicator and duel rules still need a duelist. A non-duelist target gets lock-on
+    but no guard indicator. When not blocking, the indicator shows the nearest duelist, as before.
+  - Logged: the target picked (form ID, duelist or not, degrees off), a lost target and why, and
+    flicks held back by the cooldown (to find the "left stuck" cause).
+- An earlier note was wrong: the run 8 "weapon not melee" hit line is about the HitData weapon (the
+  attack), not the dagger victim. Daggers (anim 2) count as melee.
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.

@@ -45,6 +45,12 @@ namespace duel {
         ULONGLONG g_lockLastLog = 0;
         std::atomic<unsigned> g_frame{ 0 }, g_lockFrame{ 0 };  // turn at most once per game frame
 
+        // The lock-on target is picked when block starts and kept for the whole hold, as the player
+        // asked: no switching to someone else (possibly behind) mid-block. If it dies or gets away,
+        // there's no new target until block is released and held again.
+        std::uint32_t g_lockHandle = 0;
+        bool g_lockLost = false;  // this hold's target is gone; wait for the next block
+
         void TrackLockOn(game::Actor* player, game::Actor* opponent)
         {
             long sent = g_lockSent.exchange(0);
@@ -141,35 +147,70 @@ namespace duel {
         s.playerGuarding = g_playerGuarding;
         s.playerGuard = g_playerGuard;
 
-        // Opponent: nearest living duelist whose combat target is the player.
+        // Candidates: living actors fighting the player within opponent_max_distance. Any of them can
+        // be locked on (spellcasters too); only duelists get a guard indicator and duel rules.
         const float maxSq = float(tun::opponent_max_distance) * float(tun::opponent_max_distance);
-        float bestSq = maxSq;
-        std::uint32_t bestHandle = 0;
+        float nearestSq = maxSq, bestScore = INFINITY;
+        std::uint32_t nearestDuelist = 0, bestFront = 0;
         if (game::HandleArray* arr = game::HighActorHandles(); arr && arr->data) {
             for (std::uint32_t i = 0; i < arr->size; ++i) {
                 game::Actor* a = game::LookupActor(arr->data[i]);
                 if (!a) continue;
-                if (a != player && !game::IsDead(a) && game::IsDuelist(a)) {
+                if (a != player && !game::IsDead(a)) {
                     game::Actor* target = game::LookupActor(game::CombatTargetHandle(a));
                     bool targetsPlayer = target == player;
                     game::Release(target);
                     float d = game::DistanceSq(a, player);
-                    if (targetsPlayer && d < bestSq) {
-                        bestSq = d;
-                        bestHandle = arr->data[i];
+                    if (targetsPlayer && d < maxSq) {
+                        // Prefer enemies in front: someone behind counts as up to three times as far.
+                        float score = std::sqrt(d) * (1.0f + std::fabs(game::YawErrorDeg(player, a)) / 90.0f);
+                        if (score < bestScore) {
+                            bestScore = score;
+                            bestFront = arr->data[i];
+                        }
+                        if (d < nearestSq && game::IsDuelist(a)) {
+                            nearestSq = d;
+                            nearestDuelist = arr->data[i];
+                        }
                     }
                 }
                 game::Release(a);
             }
         }
-        game::Actor* best = game::LookupActor(bestHandle);
-        if (best) {
-            s.hasOpponent = true;
-            s.opponentGuard = NpcGuardOf(best);
-            s.opponentAttacking = game::IsAttacking(best);
+
+        std::uint32_t targetHandle = nearestDuelist;
+        if (g_playerGuarding) {
+            if (!g_lockHandle && !g_lockLost && bestFront) {  // first target of this hold (not a switch)
+                g_lockHandle = bestFront;
+                if (game::Actor* t = game::LookupActor(g_lockHandle)) {
+                    fhd::Log("lock-on: target %08X (%s), %.0f deg off", game::FormID(t), game::IsDuelist(t) ? "duelist" : "not a duelist",
+                        game::YawErrorDeg(player, t));
+                    game::Release(t);
+                }
+            } else if (g_lockHandle) {
+                game::Actor* t = game::LookupActor(g_lockHandle);
+                const float breakSq = float(tun::lock_on_break_distance) * float(tun::lock_on_break_distance);
+                if (!t || game::IsDead(t) || game::DistanceSq(t, player) > breakSq) {
+                    fhd::Log("lock-on: target lost (%s); no new target until block is held again", !t ? "gone" : game::IsDead(t) ? "dead" : "too far");
+                    g_lockHandle = 0;
+                    g_lockLost = true;
+                }
+                game::Release(t);
+            }
+            targetHandle = g_lockHandle;
+        } else {
+            g_lockLost = false;
+            g_lockHandle = 0;
         }
-        TrackLockOn(player, best);
-        game::Release(best);
+
+        game::Actor* target = game::LookupActor(targetHandle);
+        if (target && game::IsDuelist(target)) {
+            s.hasOpponent = true;
+            s.opponentGuard = NpcGuardOf(target);
+            s.opponentAttacking = game::IsAttacking(target);
+        }
+        TrackLockOn(player, target);
+        game::Release(target);
 
         if (s.playerDuelist != g_logged.playerDuelist) {
             fhd::Log("player duelist: %s (%s)", s.playerDuelist ? "yes" : "no", game::DescribeDuelist(player).c_str());
@@ -214,6 +255,10 @@ namespace duel {
         int sx = 0, sy = 0;
         if (ax >= tun::flick_threshold && ax > ay * tun::flick_axis_dominance) sx = g_accX > 0 ? 1 : -1;
         else if (ay >= tun::flick_threshold && ay > ax * tun::flick_axis_dominance) sy = g_accY > 0 ? 1 : -1;
+        if ((sx || sy) && now - g_lastSwitch < ULONGLONG(tun::flick_cooldown_ms)) {
+            static int logged = 0;
+            if (logged++ < 20) fhd::Log("flick %d %d held back by the cooldown (%llu ms after the last switch)", sx, sy, now - g_lastSwitch);
+        }
         if ((sx || sy) && now - g_lastSwitch >= ULONGLONG(tun::flick_cooldown_ms)) {
             for (const auto& g : kGuards) {
                 if (g.flickDx == sx && g.flickDy == sy && g.id != g_playerGuard) {

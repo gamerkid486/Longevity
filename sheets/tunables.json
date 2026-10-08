@@ -12,6 +12,7 @@
     {"id": "lock_on_fraction",      "system": "player_guard", "value": 0.3,  "unit": "0-1 per frame", "meaning": "Share of the remaining angle to the opponent turned each frame (higher = snappier, too high wobbles)"},
     {"id": "lock_on_max_deg_per_frame", "system": "player_guard", "value": 6.0, "unit": "degrees", "meaning": "Fastest lock-on turn in one frame, so big turns stay smooth"},
     {"id": "lock_on_start_deg_per_count", "system": "player_guard", "value": 0.05, "unit": "degrees per mouse count", "meaning": "Starting guess of how far one mouse count turns the player (run 6 measured about 0.05); refined while turning"},
+    {"id": "lock_on_break_distance", "system": "player_guard", "value": 1400, "unit": "game units", "meaning": "A locked-on target further than this is let go (no new target until block is released and held again)"},
     {"id": "lock_on_deadzone_deg",  "system": "player_guard", "value": 1.5,  "unit": "degrees",      "meaning": "No turning when already this close to facing the opponent"},
     {"id": "npc_guard_hold_min_ms", "system": "npc_guard", "value": 1200, "unit": "ms",            "meaning": "Shortest time an NPC keeps a guard"},
     {"id": "npc_guard_hold_max_ms", "system": "npc_guard", "value": 2600, "unit": "ms",            "meaning": "Longest time an NPC keeps a guard"},

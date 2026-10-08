@@ -21,6 +21,7 @@ namespace tun {
     inline constexpr float lock_on_fraction = 0.3f;  // 0-1 per frame: Share of the remaining angle to the opponent turned each frame (higher = snappier, too high wobbles)
     inline constexpr float lock_on_max_deg_per_frame = 6.0f;  // degrees: Fastest lock-on turn in one frame, so big turns stay smooth
     inline constexpr float lock_on_start_deg_per_count = 0.05f;  // degrees per mouse count: Starting guess of how far one mouse count turns the player (run 6 measured about 0.05); refined while turning
+    inline constexpr int lock_on_break_distance = 1400;  // game units: A locked-on target further than this is let go (no new target until block is released and held again)
     inline constexpr float lock_on_deadzone_deg = 1.5f;  // degrees: No turning when already this close to facing the opponent
     inline constexpr int npc_guard_hold_min_ms = 1200;  // ms: Shortest time an NPC keeps a guard
     inline constexpr int npc_guard_hold_max_ms = 2600;  // ms: Longest time an NPC keeps a guard

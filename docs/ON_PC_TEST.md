@@ -41,8 +41,8 @@ game folder.
    its `dinput8.dll` next to `SkyrimSE.exe`. Melty installs this loader for players itself; it's only
    needed for this manual test. Write down every file you add. (Run 1 found Ultimate ASI Loader 9.7.4
    already installed, so this step is usually skipped.)
-4. **Install the test build.** Check `release/FHDuels-0.1.7.zip` against
-   `release/FHDuels-0.1.7.zip.sha256`. Then extract it into the Skyrim folder; it adds `FHDuels.asi`
+4. **Install the test build.** Check `release/FHDuels-0.1.8.zip` against
+   `release/FHDuels-0.1.8.zip.sha256`. Then extract it into the Skyrim folder; it adds `FHDuels.asi`
    and an `FHDuels/` folder. Write down the added files so they can be removed later.
 5. **Turn on the sound list for the next launch.** Set a user environment variable with
    `setx FHDUELS_DUMP_INDEX 1`. The game has to inherit it: either have the user restart Steam, or
@@ -66,7 +66,7 @@ game folder.
    left says about 8 seconds after loading the save.
 
    If you have screenshot tools, capture the game window only, showing the indicators during a fight.
-7. **Collect the results.** After the user quits the game, copy these into `tests/results/run8/`:
+7. **Collect the results.** After the user quits the game, copy these into `tests/results/run9/`:
    - `Documents/My Games/Skyrim Special Edition/FHDuels.log`. On this PC, Documents is redirected to
      OneDrive: `%USERPROFILE%\OneDrive\Documents\My Games\Skyrim Special Edition\FHDuels.log`;
    - `%LOCALAPPDATA%/FHDuels/index.csv`, if it exists. If it's over 20 MB, commit a gzip of it instead;
@@ -79,7 +79,7 @@ game folder.
    the mod installed unless the user asks you to remove it. Then ask the user whether to put their
    other mods back now. If they say yes, undo step 2b: rename the `*.asi.off` files back and restore
    `Plugins.txt` from `Plugins.txt.fhduels-backup`.
-9. **Send the results back.** Commit `tests/results/run8/`, push it to
+9. **Send the results back.** Commit `tests/results/run9/`, push it to
    `claude/skyrim-mod-melty-8pkxd9`, and tell the user to go back to the cloud session and say
    "results are pushed".
 
