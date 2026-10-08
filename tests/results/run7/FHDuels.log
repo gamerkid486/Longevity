@@ -1,0 +1,473 @@
+[06:16:36.720] SkyrimSE.exe 1.7.104.0 supported
+[06:16:40.062] hooks: vtbl_player_character[0xAD] -> +0x745200
+[06:16:40.062] hooks: hit call at +0x4A8 and player update patched
+[06:16:40.062] input: DirectInput mouse hooks A/W
+[06:16:40.088] forhonor: install at c:/program files (x86)/steam\steamapps\common\For Honor
+[06:16:40.114] overlay: ready
+[06:16:40.123] forhonor: soundpc_00_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_00_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.123] forhonor: soundpc_01_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.125] forhonor: soundpc_01_ab_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[06:16:40.127] forhonor: 0 sound pack(s), 0 sounds indexed
+[06:16:40.145] audio: 0 clip(s) loaded for sound 0
+[06:16:40.146] skyrim sounds: 23 file(s) in 6198 match '/wpn/|block' for block_impact
+[06:16:40.146] skyrim sounds: block_impact <- sound/fx/wpn/block/axe/wpn_block_axe_01.wav
+[06:16:40.147] skyrim sounds: block_impact <- sound/fx/wpn/block/axe/wpn_block_axe_02.wav
+[06:16:40.147] skyrim sounds: block_impact <- sound/fx/wpn/block/blade/wpn_block_blade1hand_01.wav
+[06:16:40.147] skyrim sounds: block_impact <- sound/fx/wpn/block/blade/wpn_block_blade1hand_02.wav
+[06:16:40.147] skyrim sounds: block_impact <- sound/fx/wpn/block/blade/wpn_block_blade1hand_03.wav
+[06:16:40.147] skyrim sounds: block_impact <- sound/fx/wpn/block/blade2hand/wpn_block_blade2hand_01.wav
+[06:16:40.148] audio: 6 clip(s) loaded for sound 0
+[06:16:40.148] audio: 0 clip(s) loaded for sound 1
+[06:16:40.148] sounds: 0 FOR HONOR clip(s), 1 sound(s) from Skyrim
+[06:16:46.042] input: mouse device found
+[06:16:46.042] input: GetDeviceState mouse 0 0
+[06:16:46.266] input: GetDeviceState mouse 0 0
+[06:16:46.268] input: GetDeviceState mouse 0 0
+[06:17:06.846] hooks: first player update call
+[06:17:06.846] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[06:17:09.991] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[06:17:13.891] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[06:17:14.858] notification: FOR HONOR Duels: hold block and flick the mouse to change guard. Using Skyrim's block sounds.
+[06:17:14.975] player guarding: yes
+[06:17:16.225] player guard -> Right
+[06:17:16.392] player guard -> Left
+[06:17:17.309] player guard -> Right
+[06:17:17.992] player guard -> Top
+[06:17:21.226] player guard -> Right
+[06:17:21.525] player guarding: no
+[06:17:25.175] opponent: found
+[06:17:25.191] overlay: drawing the opponent indicator
+[06:17:25.542] hooks: first melee hit call
+[06:17:25.542] melee hit: npc vs npc, not a duel
+[06:17:26.941] melee hit: npc vs npc, not a duel
+[06:17:27.591] lock-on: facing -36.6 deg off, 0.0500 deg per count
+[06:17:27.591] player guarding: yes
+[06:17:28.509] melee hit: npc vs npc, not a duel
+[06:17:28.591] lock-on: facing -0.7 deg off, 0.0560 deg per count
+[06:17:29.259] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:17:29.590] lock-on: facing -0.0 deg off, 0.0466 deg per count
+[06:17:29.725] melee hit: npc vs npc, not a duel
+[06:17:29.976] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:17:30.342] melee hit: npc vs npc, not a duel
+[06:17:30.591] lock-on: facing 2.3 deg off, 0.0444 deg per count
+[06:17:31.126] player guard -> Left
+[06:17:31.209] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[06:17:31.242] melee hit: npc vs npc, not a duel
+[06:17:31.591] lock-on: facing 0.5 deg off, 0.0473 deg per count
+[06:17:31.992] player guard -> Top
+[06:17:32.392] player guard -> Left
+[06:17:32.492] melee hit: npc vs npc, not a duel
+[06:17:32.591] lock-on: facing 1.8 deg off, 0.0468 deg per count
+[06:17:33.591] lock-on: facing 1.0 deg off, 0.0441 deg per count
+[06:17:33.592] melee hit: npc vs npc, not a duel
+[06:17:34.309] melee hit: npc vs npc, not a duel
+[06:17:34.475] melee hit: npc vs npc, not a duel
+[06:17:34.591] lock-on: facing 1.8 deg off, 0.0450 deg per count
+[06:17:35.591] lock-on: facing -1.9 deg off, 0.0476 deg per count
+[06:17:35.642] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[06:17:35.642] audio: played sound 0 clip 1
+[06:17:35.642] attacker reaction: recoilLargeStart
+[06:17:36.292] player guard -> Right
+[06:17:36.508] player guard -> Top
+[06:17:36.591] lock-on: facing 1.9 deg off, 0.0450 deg per count
+[06:17:37.142] melee hit: npc attacks player, guards 2 vs 1 -> landed
+[06:17:37.526] player guard -> Left
+[06:17:37.591] lock-on: facing 0.8 deg off, 0.0449 deg per count
+[06:17:37.842] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[06:17:37.959] player guard -> Top
+[06:17:38.559] melee hit: npc attacks player, guards 1 vs 1 -> blocked
+[06:17:38.559] audio: played sound 0 clip 0
+[06:17:38.559] attacker reaction: recoilLargeStart
+[06:17:38.591] lock-on: facing 0.7 deg off, 0.0499 deg per count
+[06:17:39.590] lock-on: facing 0.8 deg off, 0.0484 deg per count
+[06:17:40.325] melee hit: npc attacks player, guards 1 vs 1 -> blocked
+[06:17:40.325] audio: played sound 0 clip 2
+[06:17:40.325] attacker reaction: recoilLargeStart
+[06:17:40.591] lock-on: facing -1.8 deg off, 0.0546 deg per count
+[06:17:41.591] lock-on: facing 0.6 deg off, 0.0490 deg per count
+[06:17:42.591] lock-on: facing -0.1 deg off, 0.0455 deg per count
+[06:17:42.892] melee hit: npc attacks player, guards 1 vs 1 -> blocked
+[06:17:42.892] audio: played sound 0 clip 1
+[06:17:42.892] attacker reaction: recoilLargeStart
+[06:17:43.590] lock-on: facing -2.0 deg off, 0.0480 deg per count
+[06:17:44.392] melee hit: npc attacks player, guards 1 vs 1 -> blocked
+[06:17:44.392] audio: played sound 0 clip 1
+[06:17:44.392] attacker reaction: recoilLargeStart
+[06:17:44.591] lock-on: facing -4.5 deg off, 0.0446 deg per count
+[06:17:45.059] player guard -> Left
+[06:17:45.590] lock-on: facing 1.2 deg off, 0.0462 deg per count
+[06:17:46.590] lock-on: facing -1.1 deg off, 0.0456 deg per count
+[06:17:46.692] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[06:17:46.692] audio: played sound 0 clip 4
+[06:17:46.692] attacker reaction: recoilLargeStart
+[06:17:47.342] player guard -> Right
+[06:17:47.591] lock-on: facing -0.9 deg off, 0.0456 deg per count
+[06:17:48.590] lock-on: facing 0.8 deg off, 0.0473 deg per count
+[06:17:49.224] player guarding: no
+[06:17:49.591] melee hit: player attacks npc, guards 3 vs 2 (victim mid-attack) -> landed
+[06:17:49.624] melee hit: npc attacks player, guards 2 vs 0 (victim mid-attack) -> landed
+[06:17:50.842] melee hit: player attacks npc, guards 3 vs 3 -> blocked
+[06:17:50.842] audio: played sound 0 clip 2
+[06:17:50.842] attacker reaction: recoilLargeStart
+[06:17:51.991] lock-on: facing -24.7 deg off, 0.0467 deg per count
+[06:17:51.991] player guarding: yes
+[06:17:52.042] player guard -> Left
+[06:17:52.309] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[06:17:52.776] player guard -> Top
+[06:17:52.990] lock-on: facing -2.1 deg off, 0.0448 deg per count
+[06:17:53.457] player guarding: no
+[06:17:53.591] player guarding: yes
+[06:17:53.957] player guarding: no
+[06:17:54.075] melee hit: not a duel (player attacks, victim right hand form 000135B8 type 0x29 anim 1, weapon state 3, weapon not melee)
+[06:17:54.257] lock-on: facing 17.3 deg off, 0.0543 deg per count
+[06:17:54.257] player guarding: yes
+[06:17:54.490] player guarding: no
+[06:17:55.142] melee hit: player attacks npc, guards 1 vs 1 -> blocked
+[06:17:55.142] audio: played sound 0 clip 3
+[06:17:55.142] attacker reaction: recoilLargeStart
+[06:17:55.575] melee hit: npc attacks player, guards 1 vs 0 -> landed
+[06:17:56.291] lock-on: facing -11.2 deg off, 0.0488 deg per count
+[06:17:56.291] player guarding: yes
+[06:17:56.442] player guard -> Left
+[06:17:56.692] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[06:17:57.291] lock-on: facing -1.2 deg off, 0.0637 deg per count
+[06:17:57.407] player guarding: no
+[06:17:57.926] melee hit: player attacks npc, guards 2 vs 2 -> blocked
+[06:17:57.926] audio: played sound 0 clip 4
+[06:17:57.926] attacker reaction: recoilLargeStart
+[06:17:58.543] melee hit: npc attacks player, guards 2 vs 0 -> landed
+[06:17:59.073] lock-on: facing 19.1 deg off, 0.0601 deg per count
+[06:17:59.073] player guarding: yes
+[06:17:59.308] player guard -> Right
+[06:17:59.426] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:18:00.074] lock-on: facing -0.5 deg off, 0.0540 deg per count
+[06:18:00.392] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:18:00.407] player guarding: no
+[06:18:00.892] melee hit: player attacks npc, guards 3 vs 2 (victim mid-attack) -> landed
+[06:18:01.274] melee hit: npc attacks player, guards 2 vs 0 (victim mid-attack) -> landed
+[06:18:01.591] lock-on: facing 8.9 deg off, 0.0540 deg per count
+[06:18:01.591] player guarding: yes
+[06:18:02.591] lock-on: facing -1.2 deg off, 0.0550 deg per count
+[06:18:02.640] player guarding: no
+[06:18:03.092] melee hit: player attacks npc, guards 3 vs 3 -> blocked
+[06:18:03.092] audio: played sound 0 clip 0
+[06:18:03.092] attacker reaction: recoilLargeStart
+[06:18:04.790] opponent: none
+[06:18:04.874] player guarding: yes
+[06:18:05.741] player guarding: no
+[06:18:44.527] input: mouse device found
+[06:19:00.074] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[06:19:01.540] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[06:19:03.757] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[06:19:15.690] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[06:19:15.956] opponent: found
+[06:19:24.364] input: mouse device found
+[06:19:26.257] lock-on: facing 1.0 deg off, 0.0550 deg per count
+[06:19:26.257] player guarding: yes
+[06:19:27.141] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:19:27.257] lock-on: facing 9.7 deg off, 0.0398 deg per count
+[06:19:27.824] melee hit: npc attacks player, guards 1 vs 3 -> landed
+[06:19:28.257] lock-on: facing 12.7 deg off, 0.0457 deg per count
+[06:19:29.257] lock-on: facing -0.1 deg off, 0.0463 deg per count
+[06:19:30.257] lock-on: facing 2.1 deg off, 0.0418 deg per count
+[06:19:30.624] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:19:31.041] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:31.041] audio: played sound 0 clip 1
+[06:19:31.041] attacker reaction: recoilLargeStart
+[06:19:31.256] lock-on: facing 2.2 deg off, 0.0452 deg per count
+[06:19:32.257] lock-on: facing 0.5 deg off, 0.0470 deg per count
+[06:19:33.256] lock-on: facing -3.3 deg off, 0.0602 deg per count
+[06:19:33.875] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:33.875] audio: played sound 0 clip 2
+[06:19:33.875] attacker reaction: recoilLargeStart
+[06:19:34.257] lock-on: facing -1.7 deg off, 0.0451 deg per count
+[06:19:34.841] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:34.842] audio: played sound 0 clip 5
+[06:19:34.842] attacker reaction: recoilLargeStart
+[06:19:35.257] lock-on: facing 0.3 deg off, 0.0670 deg per count
+[06:19:35.641] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:35.641] audio: played sound 0 clip 4
+[06:19:35.641] attacker reaction: recoilLargeStart
+[06:19:36.257] lock-on: facing -2.0 deg off, 0.0448 deg per count
+[06:19:36.875] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:36.875] audio: played sound 0 clip 5
+[06:19:36.875] attacker reaction: recoilLargeStart
+[06:19:37.257] lock-on: facing -2.3 deg off, 0.0474 deg per count
+[06:19:38.257] lock-on: facing -46.4 deg off, 0.0483 deg per count
+[06:19:38.475] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:38.475] audio: played sound 0 clip 0
+[06:19:38.475] attacker reaction: recoilLargeStart
+[06:19:39.257] lock-on: facing -0.9 deg off, 0.0651 deg per count
+[06:19:39.442] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:39.442] audio: played sound 0 clip 5
+[06:19:39.442] attacker reaction: recoilLargeStart
+[06:19:40.257] lock-on: facing -16.4 deg off, 0.0463 deg per count
+[06:19:40.774] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:40.774] audio: played sound 0 clip 2
+[06:19:40.776] attacker reaction: recoilLargeStart
+[06:19:41.257] lock-on: facing 0.4 deg off, 0.0472 deg per count
+[06:19:42.256] lock-on: facing 0.1 deg off, 0.0472 deg per count
+[06:19:42.558] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:42.558] audio: played sound 0 clip 0
+[06:19:42.558] attacker reaction: recoilLargeStart
+[06:19:43.257] lock-on: facing -2.0 deg off, 0.0744 deg per count
+[06:19:43.608] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:43.608] audio: played sound 0 clip 3
+[06:19:43.608] attacker reaction: recoilLargeStart
+[06:19:44.257] lock-on: facing -1.3 deg off, 0.0477 deg per count
+[06:19:44.325] melee hit: npc attacks player, guards 1 vs 3 -> landed
+[06:19:45.257] lock-on: facing 1.1 deg off, 0.0503 deg per count
+[06:19:45.392] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:45.392] audio: played sound 0 clip 4
+[06:19:45.392] attacker reaction: recoilLargeStart
+[06:19:46.257] lock-on: facing -2.3 deg off, 0.0447 deg per count
+[06:19:47.256] lock-on: facing -1.3 deg off, 0.0672 deg per count
+[06:19:48.257] lock-on: facing -2.6 deg off, 0.0462 deg per count
+[06:19:49.257] lock-on: facing -2.5 deg off, 0.0448 deg per count
+[06:19:49.308] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:49.308] audio: played sound 0 clip 3
+[06:19:49.308] attacker reaction: recoilLargeStart
+[06:19:49.574] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:19:50.257] lock-on: facing 2.4 deg off, 0.0457 deg per count
+[06:19:50.824] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:50.824] audio: played sound 0 clip 2
+[06:19:50.824] attacker reaction: recoilLargeStart
+[06:19:51.257] lock-on: facing 1.3 deg off, 0.0757 deg per count
+[06:19:51.625] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:19:52.257] lock-on: facing -8.2 deg off, 0.0453 deg per count
+[06:19:53.257] lock-on: facing -0.5 deg off, 0.0548 deg per count
+[06:19:54.257] lock-on: facing -2.6 deg off, 0.0455 deg per count
+[06:19:54.292] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:54.292] audio: played sound 0 clip 1
+[06:19:54.292] attacker reaction: recoilLargeStart
+[06:19:54.575] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:54.575] audio: played sound 0 clip 3
+[06:19:54.575] attacker reaction: recoilLargeStart
+[06:19:55.257] lock-on: facing 4.8 deg off, 0.0420 deg per count
+[06:19:56.256] lock-on: facing -45.9 deg off, 0.0449 deg per count
+[06:19:56.325] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:56.325] audio: played sound 0 clip 4
+[06:19:56.325] attacker reaction: recoilLargeStart
+[06:19:57.257] lock-on: facing 1.2 deg off, 0.0484 deg per count
+[06:19:57.575] player guard -> Left
+[06:19:57.658] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[06:19:58.092] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[06:19:58.257] lock-on: facing -2.1 deg off, 0.0446 deg per count
+[06:19:58.624] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[06:19:58.824] player guard -> Right
+[06:19:59.257] lock-on: facing -47.3 deg off, 0.0453 deg per count
+[06:19:59.342] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:19:59.342] audio: played sound 0 clip 5
+[06:19:59.342] attacker reaction: recoilLargeStart
+[06:20:00.008] player guard -> Top
+[06:20:00.257] lock-on: facing 2.1 deg off, 0.0465 deg per count
+[06:20:01.141] player guard -> Left
+[06:20:01.257] lock-on: facing -1.7 deg off, 0.0456 deg per count
+[06:20:02.175] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[06:20:02.256] lock-on: facing 2.2 deg off, 0.0450 deg per count
+[06:20:02.358] player guard -> Right
+[06:20:03.142] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:20:03.257] lock-on: facing 1.9 deg off, 0.0444 deg per count
+[06:20:03.408] player guard -> Left
+[06:20:03.841] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[06:20:03.841] audio: played sound 0 clip 0
+[06:20:03.841] attacker reaction: recoilLargeStart
+[06:20:04.256] lock-on: facing 1.3 deg off, 0.0463 deg per count
+[06:20:05.257] lock-on: facing 2.3 deg off, 0.0444 deg per count
+[06:20:05.608] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[06:20:05.608] audio: played sound 0 clip 3
+[06:20:05.608] attacker reaction: recoilLargeStart
+[06:20:06.257] lock-on: facing 2.4 deg off, 0.0436 deg per count
+[06:20:07.257] lock-on: facing 3.4 deg off, 0.0450 deg per count
+[06:20:08.257] lock-on: facing -1.8 deg off, 0.0451 deg per count
+[06:20:09.239] opponent: none
+[06:20:10.057] player guarding: no
+[06:21:32.631] input: mouse device found
+[06:22:07.357] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[06:22:55.970] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[06:22:59.689] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[06:23:35.873] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[06:23:39.639] player guarding: yes
+[06:23:39.941] player guard -> Top
+[06:23:40.440] player guard -> Right
+[06:23:40.825] player guard -> Left
+[06:23:41.158] player guard -> Top
+[06:23:41.706] player guarding: no
+[06:23:45.639] opponent: found
+[06:23:46.290] lock-on: facing 19.0 deg off, 0.0447 deg per count
+[06:23:46.290] player guarding: yes
+[06:23:46.358] player guard -> Right
+[06:23:47.290] lock-on: facing -1.8 deg off, 0.0447 deg per count
+[06:23:48.289] lock-on: facing -1.6 deg off, 0.0451 deg per count
+[06:23:49.289] lock-on: facing -1.5 deg off, 0.0494 deg per count
+[06:23:49.958] player guard -> Top
+[06:23:50.289] lock-on: facing 1.8 deg off, 0.0438 deg per count
+[06:23:51.289] lock-on: facing -1.4 deg off, 0.0462 deg per count
+[06:23:51.941] melee hit: npc attacks player, guards 3 vs 1 -> landed
+[06:23:52.056] player guarding: no
+[06:23:52.440] melee hit: player attacks npc, guards 1 vs 1 (victim mid-attack) -> landed
+[06:23:52.807] melee hit: npc attacks player, guards 1 vs 0 (victim mid-attack) -> landed
+[06:23:53.006] lock-on: facing 40.9 deg off, 0.0479 deg per count
+[06:23:53.006] player guarding: yes
+[06:23:53.274] player guard -> Right
+[06:23:54.006] lock-on: facing -5.2 deg off, 0.0541 deg per count
+[06:23:54.123] melee hit: npc attacks player, guards 1 vs 3 -> landed
+[06:23:54.722] player guarding: no
+[06:23:55.640] lock-on: facing 74.1 deg off, 0.0361 deg per count
+[06:23:55.640] player guarding: yes
+[06:23:56.291] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:23:56.291] audio: played sound 0 clip 3
+[06:23:56.291] attacker reaction: recoilLargeStart
+[06:23:56.639] lock-on: facing 2.1 deg off, 0.0492 deg per count
+[06:23:57.639] lock-on: facing 1.3 deg off, 0.0480 deg per count
+[06:23:57.774] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:23:57.774] audio: played sound 0 clip 3
+[06:23:57.774] attacker reaction: recoilLargeStart
+[06:23:58.108] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:23:58.639] lock-on: facing -2.3 deg off, 0.0444 deg per count
+[06:23:58.923] player guarding: no
+[06:24:00.724] melee hit: player attacks npc, guards 3 vs 3 -> blocked
+[06:24:00.724] audio: played sound 0 clip 0
+[06:24:00.724] attacker reaction: recoilLargeStart
+[06:24:00.890] melee hit: npc attacks player, guards 3 vs 0 -> landed
+[06:24:01.873] lock-on: facing 7.9 deg off, 0.0487 deg per count
+[06:24:01.873] player guarding: yes
+[06:24:01.941] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:24:01.941] audio: played sound 0 clip 1
+[06:24:01.941] attacker reaction: recoilLargeStart
+[06:24:02.174] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:24:02.174] audio: played sound 0 clip 3
+[06:24:02.175] attacker reaction: recoilLargeStart
+[06:24:02.523] player guard -> Left
+[06:24:02.872] lock-on: facing 3.8 deg off, 0.0430 deg per count
+[06:24:03.240] player guarding: no
+[06:24:03.323] melee hit: not a duel (player attacks, victim right hand form 000135B8 type 0x29 anim 1, weapon state 3, weapon not melee)
+[06:24:03.506] player guarding: yes
+[06:24:03.872] lock-on: facing 68.7 deg off, 0.0464 deg per count
+[06:24:04.873] lock-on: facing 2.6 deg off, 0.0451 deg per count
+[06:24:05.272] player guarding: no
+[06:24:05.641] melee hit: player attacks npc, guards 2 vs 2 -> blocked
+[06:24:05.641] audio: played sound 0 clip 2
+[06:24:05.641] attacker reaction: recoilLargeStart
+[06:24:06.374] melee hit: npc attacks player, guards 2 vs 0 -> landed
+[06:24:06.789] lock-on: facing -8.7 deg off, 0.0429 deg per count
+[06:24:06.789] player guarding: yes
+[06:24:07.341] player guard -> Top
+[06:24:07.773] player guard -> Left
+[06:24:07.789] lock-on: facing 0.2 deg off, 0.0610 deg per count
+[06:24:08.789] lock-on: facing 0.7 deg off, 0.0577 deg per count
+[06:24:09.789] lock-on: facing -0.3 deg off, 0.0452 deg per count
+[06:24:10.340] opponent: none
+[06:24:11.107] player guard -> Right
+[06:24:11.256] player guarding: no
+[06:24:28.856] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[06:24:45.023] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[06:24:45.723] opponent: found
+[06:24:45.823] lock-on: facing -2.1 deg off, 0.0452 deg per count
+[06:24:45.823] player guarding: yes
+[06:24:46.607] player guard -> Left
+[06:24:46.822] lock-on: facing -1.5 deg off, 0.0436 deg per count
+[06:24:47.606] player guarding: no
+[06:24:47.991] melee hit: player attacks npc, guards 2 vs 3 -> landed
+[06:24:48.522] lock-on: facing 8.2 deg off, 0.0508 deg per count
+[06:24:48.522] player guarding: yes
+[06:24:48.741] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[06:24:49.123] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[06:24:49.123] audio: played sound 0 clip 4
+[06:24:49.123] attacker reaction: recoilLargeStart
+[06:24:49.522] lock-on: facing 0.6 deg off, 0.0718 deg per count
+[06:24:49.707] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[06:24:50.274] player guard -> Top
+[06:24:50.523] lock-on: facing 1.8 deg off, 0.0451 deg per count
+[06:24:51.306] melee hit: npc attacks player, guards 3 vs 1 -> landed
+[06:24:51.341] player guard -> Right
+[06:24:51.523] lock-on: facing -5.2 deg off, 0.0559 deg per count
+[06:24:52.523] lock-on: facing 2.2 deg off, 0.0511 deg per count
+[06:24:53.122] player guarding: no
+[06:24:53.457] melee hit: npc attacks player, guards 3 vs 0 (victim mid-attack) -> landed
+[06:24:53.542] melee hit: player attacks npc, guards 3 vs 3 (victim mid-attack) -> landed
+[06:24:54.072] lock-on: facing -9.8 deg off, 0.0423 deg per count
+[06:24:54.072] player guarding: yes
+[06:24:54.073] player guard -> Left
+[06:24:55.073] lock-on: facing -0.2 deg off, 0.0496 deg per count
+[06:24:56.073] lock-on: facing -2.0 deg off, 0.0458 deg per count
+[06:24:56.174] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[06:24:56.174] audio: played sound 0 clip 0
+[06:24:56.174] attacker reaction: recoilLargeStart
+[06:24:56.624] player guard -> Top
+[06:24:56.789] player guarding: no
+[06:24:57.140] melee hit: player attacks npc, guards 1 vs 2 -> landed
+[06:24:58.123] melee hit: player attacks npc, guards 1 vs 1 -> blocked
+[06:24:58.123] audio: played sound 0 clip 0
+[06:24:58.123] attacker reaction: recoilLargeStart
+[06:24:59.240] melee hit: npc attacks player, guards 2 vs 0 -> landed
+[06:24:59.273] lock-on: facing -24.0 deg off, 0.0458 deg per count
+[06:24:59.273] player guarding: yes
+[06:24:59.456] player guard -> Left
+[06:24:59.557] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[06:25:00.223] player guarding: no
+[06:25:00.573] melee hit: player attacks npc, guards 2 vs 1 -> landed
+[06:25:01.105] lock-on: facing -23.8 deg off, 0.0534 deg per count
+[06:25:01.105] player guarding: yes
+[06:25:01.924] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[06:25:02.105] lock-on: facing -5.2 deg off, 0.0539 deg per count
+[06:25:02.224] player guard -> Top
+[06:25:02.657] melee hit: npc attacks player, guards 2 vs 1 -> landed
+[06:25:02.757] player guard -> Left
+[06:25:03.105] lock-on: facing 0.8 deg off, 0.0449 deg per count
+[06:25:03.690] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[06:25:03.807] player guard -> Right
+[06:25:04.105] lock-on: facing 1.6 deg off, 0.0431 deg per count
+[06:25:04.156] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:25:04.674] player guard -> Left
+[06:25:05.105] lock-on: facing -0.8 deg off, 0.0432 deg per count
+[06:25:06.105] lock-on: facing 7.8 deg off, 0.0493 deg per count
+[06:25:06.123] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[06:25:06.457] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[06:25:06.457] audio: played sound 0 clip 1
+[06:25:06.457] attacker reaction: recoilLargeStart
+[06:25:07.105] lock-on: facing 0.4 deg off, 0.0787 deg per count
+[06:25:08.105] lock-on: facing 0.3 deg off, 0.0454 deg per count
+[06:25:09.024] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[06:25:09.024] audio: played sound 0 clip 5
+[06:25:09.024] attacker reaction: recoilLargeStart
+[06:25:09.105] lock-on: facing -2.1 deg off, 0.0667 deg per count
+[06:25:09.772] player guarding: no
+[06:25:10.156] melee hit: player attacks npc, guards 2 vs 3 -> landed
+[06:25:10.757] melee hit: npc attacks player, guards 3 vs 0 -> landed
+[06:25:10.889] lock-on: facing 60.5 deg off, 0.0433 deg per count
+[06:25:10.889] player guarding: yes
+[06:25:10.890] player guard -> Right
+[06:25:11.790] player guard -> Left
+[06:25:11.889] lock-on: facing 6.1 deg off, 0.0461 deg per count
+[06:25:12.889] lock-on: facing -1.5 deg off, 0.0493 deg per count
+[06:25:13.706] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[06:25:13.889] lock-on: facing -0.4 deg off, 0.0492 deg per count
+[06:25:13.956] player guard -> Right
+[06:25:14.523] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[06:25:14.889] lock-on: facing -2.2 deg off, 0.0454 deg per count
+[06:25:15.889] lock-on: facing 2.2 deg off, 0.0478 deg per count
+[06:25:16.023] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[06:25:16.024] audio: played sound 0 clip 0
+[06:25:16.024] attacker reaction: recoilLargeStart
+[06:25:16.889] player guarding: no
+[06:25:17.273] melee hit: player attacks npc, guards 3 vs 2 -> landed
+[06:25:17.588] opponent: none
