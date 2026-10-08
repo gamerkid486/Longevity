@@ -18,7 +18,7 @@
       "offset": 24,
       "type": "uint32 handle",
       "source": "HitData.h // 18",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "hit_weapon",
@@ -27,7 +27,7 @@
       "offset": 48,
       "type": "TESObjectWEAP*",
       "source": "HitData.h // 30",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "form_type",
@@ -36,7 +36,7 @@
       "offset": 26,
       "type": "uint8",
       "source": "TESForm.h // 1A",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "form_id",
@@ -45,7 +45,7 @@
       "offset": 20,
       "type": "uint32",
       "source": "TESForm.h // 14",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "refr_location",
@@ -54,7 +54,7 @@
       "offset": 84,
       "type": "float[3]",
       "source": "TESObjectREFR.h data // 40 + OBJ_REFR.location // 14",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "refr_handle_refobj",
@@ -63,7 +63,7 @@
       "offset": 32,
       "type": "subobject (refcount at +8, low 10 bits)",
       "source": "TESObjectREFR.h base // 20; NiRefObject _refCount // 08",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "refr_anim_holder",
@@ -72,7 +72,7 @@
       "offset": 56,
       "type": "subobject; vfunc 1 NotifyAnimationGraph(const BSFixedString&)",
       "source": "TESObjectREFR.h base // 38; IAnimationGraphManagerHolder.h // 01",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "refr_vfunc_is_dead",
@@ -81,7 +81,7 @@
       "offset": 153,
       "type": "vtable index",
       "source": "TESObjectREFR.h // 99",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "actor_runtime",
@@ -90,7 +90,7 @@
       "offset": 232,
       "type": "base of runtime data (AE 1.6.629+)",
       "source": "Actor.h RelocateMemberIfNewer(1.6.629, 0xE0, 0xE8)",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "actor_combat_target",
@@ -99,7 +99,7 @@
       "offset": 28,
       "type": "uint32 handle (relative to actor_runtime)",
       "source": "Actor.h /* 0FC */ is the SE absolute offset; the runtime block starts at 0E0, so 0xFC - 0xE0",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "actor_process",
@@ -108,7 +108,7 @@
       "offset": 16,
       "type": "AIProcess* (relative to actor_runtime)",
       "source": "Actor.h /* 0F0 */ is the SE absolute offset; the runtime block starts at 0E0, so 0xF0 - 0xE0",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "process_right_hand",
@@ -117,7 +117,7 @@
       "offset": 248,
       "type": "TESForm*",
       "source": "AIProcess.h equippedObjects // 0F0, Hand kLeft=0 kRight=1",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "weap_anim_type",
@@ -126,7 +126,7 @@
       "offset": 413,
       "type": "uint8 (1-6 = melee weapons)",
       "source": "TESObjectWEAP.h weaponData // 168 + animationType // 35",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "weap_form_type_value",
@@ -135,7 +135,7 @@
       "offset": 41,
       "type": "enum value (not an offset)",
       "source": "FormTypes.h Weapon // 29",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "lists_high_actors",
@@ -144,7 +144,7 @@
       "offset": 48,
       "type": "BSTArray<uint32>: data +0, size +0x10",
       "source": "ProcessLists.h // 030",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "actor_state",
@@ -153,7 +153,7 @@
       "offset": 192,
       "type": "ActorState subobject (has a vtable)",
       "source": "Actor.h AsActorState: RelocateMemberIfNewer(1.6.629, 0xB8, 0xC0)",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "actor_state2",
@@ -162,7 +162,7 @@
       "offset": 12,
       "type": "uint32 bitfield; weaponState is bits 5-7 (3 = drawn), relative to actor_state",
       "source": "ActorState.h actorState2 // 0C, weaponState : 3 // 0:5",
-      "verified_in_game": false
+      "verified_in_game": true
     }
   ]
 }

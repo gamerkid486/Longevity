@@ -29,7 +29,7 @@
         "1.6.1179.0": "0x3188918",
         "1.7.104.0": "0x3230778"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "process_lists",
@@ -47,7 +47,7 @@
         "1.6.1179.0": "0x20f7db0",
         "1.7.104.0": "0x219e570"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "melee_hit_caller",
@@ -65,7 +65,7 @@
         "1.6.1179.0": "0x6bcaa0",
         "1.7.104.0": "0x6cd2f0"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "process_hit",
@@ -83,7 +83,7 @@
         "1.6.1179.0": "0x6b9df0",
         "1.7.104.0": "0x6ca640"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "get_smart_pointer",
@@ -101,7 +101,7 @@
         "1.6.1179.0": "0x179540",
         "1.7.104.0": "0x17ed00"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "actor_is_blocking",
@@ -119,7 +119,7 @@
         "1.6.1179.0": "0x69e610",
         "1.7.104.0": "0x6aef60"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "actor_is_attacking",
@@ -137,7 +137,7 @@
         "1.6.1179.0": "0x6bb0d0",
         "1.7.104.0": "0x6cb920"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "fixedstring_ctor",
@@ -155,7 +155,7 @@
         "1.6.1179.0": "0xcedff0",
         "1.7.104.0": "0xeb0f90"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "debug_notification",
@@ -173,7 +173,7 @@
         "1.6.1179.0": "0x97c0b0",
         "1.7.104.0": "0x991a30"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "vtbl_player_character",
@@ -191,7 +191,7 @@
         "1.6.1179.0": "0x18acd70",
         "1.7.104.0": "0x19296c0"
       },
-      "verified_in_game": false
+      "verified_in_game": true
     }
   ]
 }

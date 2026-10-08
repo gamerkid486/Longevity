@@ -114,6 +114,19 @@
 - Feature asks from the player: the camera should lock onto the opponent while guarding (FOR HONOR
   guard mode). Not built yet.
 
+## Run 5 (player's PC, 2026-10-08): all 0.1.4 fixes confirmed
+- Every matched block in run 5 logged `attacker reaction: recoilLargeStart` (the first in the list,
+  accepted every time), and the player saw the stagger. Hits while not holding block show guard 0
+  and land. Guard switches are at least 183 ms apart. The delayed notification appeared at the top
+  left 8.0 s after the first player update.
+- Every `game_addresses` and `layouts` row has now been exercised in game on 1.7.104 (runs 3 to 5),
+  so they're marked `verified_in_game`. They haven't been run on 1.6.x yet. The 1.6.x offsets come
+  from the `.relib`, and run 1's reader check reproduced them.
+- Still open: FOR HONOR sounds (the packs are encrypted, so a fallback is needed), and camera
+  lock-on while guarding (asked for by the player). NPC guards hold for 1.2 to 2.6 s and freeze
+  while attacking, so an NPC can keep one guard through several player hits. That works as designed,
+  but it may need tuning.
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.
