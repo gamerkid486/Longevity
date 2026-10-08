@@ -4,6 +4,6 @@
   "columns": ["id", "shows", "anchor_x", "anchor_y", "visible_when", "active_color_rgba", "idle_color_rgba"],
   "rows": [
     {"id": "player_indicator",   "shows": "player", "anchor_x": 0.5, "anchor_y": 0.78, "visible_when": "weapon drawn and duelist", "active_color_rgba": [120, 200, 255, 240], "idle_color_rgba": [255, 255, 255, 70]},
-    {"id": "opponent_indicator", "shows": "opponent", "anchor_x": 0.5, "anchor_y": 0.22, "visible_when": "an enemy duelist targeting the player is within opponent_max_distance", "active_color_rgba": [255, 70, 50, 240], "idle_color_rgba": [255, 255, 255, 70]}
+    {"id": "opponent_indicator", "shows": "opponent", "anchor_x": 0.5, "anchor_y": 0.40, "visible_when": "an enemy duelist targeting the player is within opponent_max_distance", "active_color_rgba": [255, 70, 50, 240], "idle_color_rgba": [255, 255, 255, 70]}
   ]
 }

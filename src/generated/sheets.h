@@ -52,7 +52,7 @@ inline constexpr RuleRow kRules[] = {
 namespace hud {
     struct HudRow { const char* id; bool showsPlayer; float anchorX; float anchorY; std::uint8_t active[4]; std::uint8_t idle[4]; };
     inline constexpr HudRow player_indicator{"player_indicator", true, 0.5f, 0.78f, {120, 200, 255, 240}, {255, 255, 255, 70}};
-    inline constexpr HudRow opponent_indicator{"opponent_indicator", false, 0.5f, 0.22f, {255, 70, 50, 240}, {255, 255, 255, 70}};
+    inline constexpr HudRow opponent_indicator{"opponent_indicator", false, 0.5f, 0.4f, {255, 70, 50, 240}, {255, 255, 255, 70}};
 }
 
 namespace lay {

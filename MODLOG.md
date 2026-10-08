@@ -180,6 +180,13 @@
 - Recoil, flicks, the HUD, sheathe-hide and the notification all still work.
 - The player's other mods are still set aside (`SkyCraft.asi.off`, `Plugins.txt.fhduels-backup`).
 
+## 0.1.7: enemy indicator over the torso
+- The player asked for the enemy guard indicator over the enemy's torso instead of near the top of
+  the screen. `hud.opponent_indicator.anchor_y` 0.22 → 0.40. Lock-on keeps the opponent centered
+  while guarding, so that's roughly chest height at fighting distance in the default third-person
+  camera. Following the enemy's actual screen position would need a world-to-screen projection
+  (camera addresses), which isn't built.
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.

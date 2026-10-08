@@ -17,8 +17,9 @@ self-test, and the plugin loads and safely switches itself off outside Skyrim. N
 - An attack is blocked when the defender's guard matches the attack's direction (you must be holding
   block). The hit does no damage and the attacker recoils. If the guards don't match, or the defender is
   mid-attack, the hit lands normally.
-- A FOR HONOR-style indicator shows your guard (bottom) and your opponent's guard (top). It glows while
-  you're guarding or while your opponent is attacking.
+- A FOR HONOR-style indicator shows your guard (bottom) and your opponent's guard (mid-screen, over
+  their torso while you're locked on). It glows while you're guarding or while your opponent is
+  attacking.
 - FOR HONOR's own block and clash sounds play on each exchange. They're read from your FOR HONOR install
   (Steam or Ubisoft Connect) and converted on your PC. When FOR HONOR's sound packs can't be read (not
   installed, or encrypted, as on current Steam copies), blocks use Skyrim's own weapon block sounds from
@@ -42,7 +43,7 @@ broken reference and unused row before each build.
 ```
 ./build.sh          # gen + preflight + dist/FHDuels.asi (mingw-w64)
 ./build.sh test     # also builds build/selftest.exe (run it with wine64 or on Windows)
-./package.sh 0.1.6  # dist/FHDuels-0.1.6.zip
+./package.sh 0.1.7  # dist/FHDuels-0.1.7.zip
 python3 tools/resolve_offsets.py skyrimae.relib   # refresh per-version offsets
 ```
 
