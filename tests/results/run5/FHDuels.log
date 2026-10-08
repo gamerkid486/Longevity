@@ -1,0 +1,138 @@
+[05:34:26.966] SkyrimSE.exe 1.7.104.0 supported
+[05:34:30.563] hooks: vtbl_player_character[0xAD] -> +0x745200
+[05:34:30.563] hooks: hit call at +0x4A8 and player update patched
+[05:34:30.563] input: DirectInput mouse hooks A/W
+[05:34:30.599] forhonor: install at c:/program files (x86)/steam\steamapps\common\For Honor
+[05:34:30.614] overlay: ready
+[05:34:30.638] forhonor: soundpc_00_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.641] forhonor: soundpc_00_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.644] forhonor: soundpc_00_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.647] forhonor: soundpc_00_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.650] forhonor: soundpc_00_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.652] forhonor: soundpc_00_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.656] forhonor: soundpc_00_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.659] forhonor: soundpc_00_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.661] forhonor: soundpc_00_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.664] forhonor: soundpc_00_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.667] forhonor: soundpc_01_aa_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.671] forhonor: soundpc_01_aa_vo_de.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.673] forhonor: soundpc_01_aa_vo_en.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.677] forhonor: soundpc_01_aa_vo_es-la.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.680] forhonor: soundpc_01_aa_vo_es.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.682] forhonor: soundpc_01_aa_vo_fr.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.685] forhonor: soundpc_01_aa_vo_it.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.688] forhonor: soundpc_01_aa_vo_ja.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.690] forhonor: soundpc_01_aa_vo_pt-br.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.693] forhonor: soundpc_01_aa_vo_ru.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.696] forhonor: soundpc_01_ab_sfx.pck is not a plain AKPK pack (encrypted or another format)
+[05:34:30.697] forhonor: 0 sound pack(s), 0 sounds indexed
+[05:34:30.716] audio: 0 clip(s) loaded for sound 0
+[05:34:30.716] audio: 0 clip(s) loaded for sound 1
+[05:34:30.716] forhonor: 0 of 0 sounds ready
+[05:34:36.499] input: mouse device found
+[05:34:36.499] input: GetDeviceState mouse 0 0
+[05:34:36.741] input: GetDeviceState mouse 0 0
+[05:34:36.742] input: GetDeviceState mouse 0 0
+[05:34:47.378] hooks: first player update call
+[05:34:47.378] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[05:34:52.725] player duelist: no (right hand form 00013790 type 0x29 anim 3, weapon state 0)
+[05:34:55.391] notification: FOR HONOR Duels: this build has no FOR HONOR sounds chosen yet.
+[05:35:05.708] opponent: found
+[05:35:05.992] player duelist: yes (right hand form 00013790 type 0x29 anim 3, weapon state 3)
+[05:35:06.008] overlay: drawing the opponent indicator
+[05:35:06.376] hooks: first melee hit call
+[05:35:06.376] melee hit: npc vs npc, not a duel
+[05:35:06.376] melee hit: npc vs npc, not a duel
+[05:35:08.008] player guarding: yes
+[05:35:08.043] player guard -> Left
+[05:35:08.992] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:35:08.992] attacker reaction: recoilLargeStart
+[05:35:09.076] melee hit: npc vs npc, not a duel
+[05:35:09.526] melee hit: npc attacks player, guards 1 vs 2 -> landed
+[05:35:09.675] player guarding: no
+[05:35:10.241] player guarding: yes
+[05:35:10.260] player guard -> Top
+[05:35:10.359] melee hit: npc vs npc, not a duel
+[05:35:10.359] melee hit: npc vs npc, not a duel
+[05:35:10.676] melee hit: npc attacks player, guards 1 vs 1 -> blocked
+[05:35:10.676] attacker reaction: recoilLargeStart
+[05:35:11.526] melee hit: npc vs npc, not a duel
+[05:35:11.859] player guard -> Left
+[05:35:11.893] melee hit: npc vs npc, not a duel
+[05:35:11.925] player guarding: no
+[05:35:12.409] melee hit: npc vs npc, not a duel
+[05:35:12.676] melee hit: npc attacks player, guards 2 vs 0 -> landed
+[05:35:12.709] player guarding: yes
+[05:35:13.392] player guarding: no
+[05:35:13.543] melee hit: npc vs npc, not a duel
+[05:35:13.543] melee hit: npc vs npc, not a duel
+[05:35:14.525] player guarding: yes
+[05:35:14.926] player guard -> Right
+[05:35:15.575] player guarding: no
+[05:35:17.609] player guarding: yes
+[05:35:19.326] melee hit: npc attacks player, guards 1 vs 3 -> landed
+[05:35:21.641] player guarding: no
+[05:35:21.992] player guarding: yes
+[05:35:22.742] player guard -> Top
+[05:35:23.293] player guard -> Left
+[05:35:23.558] player guarding: no
+[05:35:23.858] player guarding: yes
+[05:35:23.943] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[05:35:24.675] player guarding: no
+[05:35:25.309] player guarding: yes
+[05:35:25.343] player guard -> Right
+[05:35:25.410] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[05:35:25.410] attacker reaction: recoilLargeStart
+[05:35:26.158] player guarding: no
+[05:35:26.725] opponent: none
+[05:36:05.358] opponent: found
+[05:36:06.191] player guarding: yes
+[05:36:06.193] player guard -> Left
+[05:36:08.243] player guard -> Right
+[05:36:08.909] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[05:36:09.576] player guard -> Left
+[05:36:09.609] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[05:36:09.759] player guard -> Right
+[05:36:10.741] player guarding: no
+[05:36:11.109] melee hit: npc attacks player, guards 3 vs 0 -> landed
+[05:36:11.208] player guarding: yes
+[05:36:11.542] player guard -> Left
+[05:36:12.142] player guarding: no
+[05:36:12.441] player guarding: yes
+[05:36:12.443] player guard -> Right
+[05:36:13.709] melee hit: npc attacks player, guards 2 vs 3 -> landed
+[05:36:15.343] player guard -> Left
+[05:36:15.693] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:36:15.693] attacker reaction: recoilLargeStart
+[05:36:16.992] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:36:16.992] attacker reaction: recoilLargeStart
+[05:36:17.209] player guard -> Right
+[05:36:17.324] player guarding: no
+[05:36:17.708] player guarding: yes
+[05:36:18.259] melee hit: npc attacks player, guards 3 vs 3 -> blocked
+[05:36:18.259] attacker reaction: recoilLargeStart
+[05:36:18.910] player guard -> Left
+[05:36:18.992] player guarding: no
+[05:36:19.542] melee hit: player attacks npc, guards 2 vs 3 -> landed
+[05:36:19.575] melee hit: npc attacks player, guards 3 vs 0 (victim mid-attack) -> landed
+[05:36:21.175] player guarding: yes
+[05:36:22.293] melee hit: npc attacks player, guards 2 vs 2 -> blocked
+[05:36:22.293] attacker reaction: recoilLargeStart
+[05:36:22.426] melee hit: npc attacks player, guards 3 vs 2 -> landed
+[05:36:22.842] player guard -> Right
+[05:36:23.158] player guarding: no
+[05:36:24.642] player guarding: yes
+[05:36:25.274] player guarding: no
+[05:36:25.392] melee hit: npc attacks player, guards 3 vs 0 -> landed
+[05:36:25.458] player guarding: yes
+[05:36:26.125] player guarding: no
+[05:36:26.692] melee hit: npc attacks player, guards 1 vs 0 -> landed
+[05:36:26.741] player guarding: yes
+[05:36:26.742] player guard -> Top
+[05:36:27.843] melee hit: npc attacks player, guards 1 vs 1 -> blocked
+[05:36:27.843] attacker reaction: recoilLargeStart
+[05:36:28.542] player guarding: no
+[05:36:28.976] melee hit: player attacks npc, guards 1 vs 3 -> landed
+[05:36:29.926] melee hit: player attacks npc, guards 1 vs 3 -> landed
+[05:36:31.458] melee hit: player attacks npc, guards 1 vs 3 -> landed
+[05:36:31.492] opponent: none
