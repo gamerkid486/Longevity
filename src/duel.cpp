@@ -29,6 +29,7 @@ namespace duel {
 
         Snapshot g_snap;
         std::mutex g_snapLock;
+        Snapshot g_logged;  // last state written to the log (main thread)
 
         Guard RandomGuard()
         {
@@ -115,6 +116,13 @@ namespace duel {
             game::Release(best);
         }
 
+        if (s.playerDuelist != g_logged.playerDuelist) {
+            fhd::Log("player duelist: %s (%s)", s.playerDuelist ? "yes" : "no", game::DescribeDuelist(player).c_str());
+        }
+        if (s.playerGuarding != g_logged.playerGuarding) fhd::Log("player guarding: %s", s.playerGuarding ? "yes" : "no");
+        if (s.hasOpponent != g_logged.hasOpponent) fhd::Log("opponent: %s", s.hasOpponent ? "found" : "none");
+        g_logged = s;
+
         std::lock_guard lk(g_snapLock);
         g_snap = s;
     }
@@ -150,7 +158,10 @@ namespace duel {
     bool OnMeleeHit(game::Actor* victim, game::Actor* aggressor, const void* weapon)
     {
         game::Actor* player = game::Player();
-        if ((victim != player && aggressor != player) || !game::IsDuelist(victim) || !game::IsMeleeWeapon(weapon)) {
+        if (victim != player && aggressor != player) return RuleFor(Rule::not_a_duel).cancelHit;
+        if (!game::IsDuelist(victim) || !game::IsMeleeWeapon(weapon)) {
+            fhd::Log("melee hit: not a duel (victim %s, weapon %s)", game::DescribeDuelist(victim).c_str(),
+                game::IsMeleeWeapon(weapon) ? "melee" : "not melee");
             return RuleFor(Rule::not_a_duel).cancelHit;
         }
         Guard vg = GuardOf(victim);

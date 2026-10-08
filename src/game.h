@@ -31,6 +31,7 @@ namespace game {
     bool IsDead(Actor* a);
     bool IsMeleeWeapon(const void* form);  // TESObjectWEAP with a melee animation type
     bool IsDuelist(Actor* a);  // has a melee weapon in the right hand
+    std::string DescribeDuelist(Actor* a);  // the IsDuelist chain, for the log
     std::uint32_t FormID(Actor* a);
     float DistanceSq(Actor* a, Actor* b);
     std::uint32_t CombatTargetHandle(Actor* a);

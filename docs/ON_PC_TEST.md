@@ -41,8 +41,8 @@ game folder.
    its `dinput8.dll` next to `SkyrimSE.exe`. Melty installs this loader for players itself; it's only
    needed for this manual test. Write down every file you add. (Run 1 found Ultimate ASI Loader 9.7.4
    already installed, so this step is usually skipped.)
-4. **Install the test build.** Check `release/FHDuels-0.1.1.zip` against
-   `release/FHDuels-0.1.1.zip.sha256`. Then extract it into the Skyrim folder; it adds `FHDuels.asi`
+4. **Install the test build.** Check `release/FHDuels-0.1.2.zip` against
+   `release/FHDuels-0.1.2.zip.sha256`. Then extract it into the Skyrim folder; it adds `FHDuels.asi`
    and an `FHDuels/` folder. Write down the added files so they can be removed later.
 5. **Turn on the sound list for the next launch.** Set a user environment variable with
    `setx FHDUELS_DUMP_INDEX 1`. The game has to inherit it: either have the user restart Steam, or
@@ -56,9 +56,13 @@ game folder.
    - when they match the enemy's guard, whether the attack does no damage and the enemy recoils;
    - whether a notification appears at the top left, and what it says.
 
+   Ask these one at a time and write down each answer separately, even if nothing happened. Also ask
+   them to sheathe and draw the weapon once, and to try one fight with no weapon drawn.
+
    If you have screenshot tools, capture the game window only, showing the indicators during a fight.
-7. **Collect the results.** After the user quits the game, copy these into `tests/results/run2/`:
-   - `Documents/My Games/Skyrim Special Edition/FHDuels.log`;
+7. **Collect the results.** After the user quits the game, copy these into `tests/results/run3/`:
+   - `Documents/My Games/Skyrim Special Edition/FHDuels.log`. On this PC, Documents is redirected to
+     OneDrive: `%USERPROFILE%\OneDrive\Documents\My Games\Skyrim Special Edition\FHDuels.log`;
    - `%LOCALAPPDATA%/FHDuels/index.csv`, if it exists. If it's over 20 MB, commit a gzip of it instead;
    - a `notes.md` file with the game versions and paths, the files added to the game folder, the
      user's answers from step 6, any crash or error text, and anything else odd.
@@ -69,7 +73,7 @@ game folder.
    the mod installed unless the user asks you to remove it. Then ask the user whether to put their
    other mods back now. If they say yes, undo step 2b: rename the `*.asi.off` files back and restore
    `Plugins.txt` from `Plugins.txt.fhduels-backup`.
-9. **Send the results back.** Commit `tests/results/run2/`, push it to
+9. **Send the results back.** Commit `tests/results/run3/`, push it to
    `claude/skyrim-mod-melty-8pkxd9`, and tell the user to go back to the cloud session and say
    "results are pushed".
 

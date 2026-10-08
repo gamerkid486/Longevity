@@ -54,6 +54,26 @@
 - Also seen: `SkyCraft.asi` (another ASI mod) and SKSE built for 1.6.1170, which doesn't match the
   game. Neither is ours, and both were left alone.
 
+## Run 2 (player's PC, 2026-10-07): hooks patched, nothing happened in game
+- No crash. All three hooks were patched on 1.7.104, but there was no HUD, no blocking and no log
+  line after startup.
+- **Root cause (a bug on every version, not just 1.7):** `layouts.json` gave `actor_process` and
+  `actor_combat_target` as 0xF0 and 0xFC "relative to actor_runtime". In CommonLibSSE-NG those
+  comments are SE absolute offsets, and the runtime block starts at 0xE0. So the real relative
+  offsets are 0x10 and 0x1C. The plugin was reading 0xE8 bytes too far, so `IsDuelist` was never
+  true. The overlay draws nothing for a non-duelist, and the hit rule returns "not a duel" without
+  logging anything. Fixed in 0.1.2.
+- Slot check: `vtbl_player_character[0xAD]` points to ID 40447, which is PlayerCharacter::Update's AE
+  ID, so that slot is right. `vtbl_look_handler[3]` points to ID 523967, a new 1.7.x ID. The camera
+  behaved normally through it, but whether it's ProcessMouseMove is still unconfirmed.
+- 0.1.2 logs the first call of each hook (and the first three look-handler mouse deltas), every change
+  in the player's duelist, guarding and opponent state (with the right-hand form), and every melee
+  hit that isn't treated as a duel.
+- **FOR HONOR's `.pck` files on this install aren't plain AKPK.** All 21 start with `C0 4E 1E A2`, so
+  0 sounds were indexed. They look encrypted or wrapped. Getting around Ubisoft's encryption is out of
+  scope, so the duels run without FOR HONOR sounds until there's a decision on that.
+- Documents is redirected to OneDrive on this PC, and the log was found there.
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.

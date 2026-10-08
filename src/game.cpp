@@ -125,6 +125,20 @@ namespace game {
         return process && IsMeleeWeapon(Field<void*>(process, lay::process_right_hand));
     }
 
+    std::string DescribeDuelist(Actor* a)
+    {
+        if (!a) return "no actor";
+        void* process = Field<void*>(a, lay::actor_runtime + lay::actor_process);
+        if (!process) return "no AIProcess";
+        const void* form = Field<void*>(process, lay::process_right_hand);
+        if (!form) return "right hand empty";
+        char buf[96];
+        std::uint8_t type = Field<std::uint8_t>(form, lay::form_type);
+        std::snprintf(buf, sizeof(buf), "right hand form %08X type 0x%02X anim %u", Field<std::uint32_t>(form, lay::form_id),
+            type, type == lay::weap_form_type_value ? Field<std::uint8_t>(form, lay::weap_anim_type) : 0u);
+        return buf;
+    }
+
     std::uint32_t FormID(Actor* a) { return Field<std::uint32_t>(a, lay::form_id); }
 
     float DistanceSq(Actor* a, Actor* b)

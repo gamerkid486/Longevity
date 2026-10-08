@@ -6,6 +6,7 @@
 
 #include <windows.h>
 
+#include <atomic>
 #include <cstring>
 #include <deque>
 #include <mutex>
@@ -25,8 +26,11 @@ namespace hooks {
 
         // --- hooked functions ---------------------------------------------------------------
 
+        std::atomic<int> g_hitCalls{ 0 }, g_mouseCalls{ 0 }, g_updateCalls{ 0 };
+
         void HitHook(game::Actor* victim, void* hit)
         {
+            if (g_hitCalls++ == 0) fhd::Log("hooks: first melee hit call");
             bool cancel = false;
             game::Actor* aggressor = game::LookupActor(game::Field<std::uint32_t>(hit, lay::hit_aggressor));
             if (victim && aggressor && !game::IsDead(victim)) {
@@ -40,6 +44,7 @@ namespace hooks {
         {
             int dx = game::Field<std::int32_t>(event, lay::mouse_move_x);
             int dy = game::Field<std::int32_t>(event, lay::mouse_move_y);
+            if (g_mouseCalls++ < 3) fhd::Log("hooks: look handler call %d, mouse %d %d", g_mouseCalls.load(), dx, dy);
             if (duel::OnMouseMove(dx, dy)) return;  // guard flick: camera stays still
             g_origMouseMove(self, event, data);
         }
@@ -47,6 +52,7 @@ namespace hooks {
         void UpdateHook(game::Actor* self, float delta)
         {
             g_origUpdate(self, delta);
+            if (g_updateCalls++ == 0) fhd::Log("hooks: first player update call");
             if (self != game::Player()) return;
             duel::Tick();
             std::deque<std::string> msgs;

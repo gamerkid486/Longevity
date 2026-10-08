@@ -96,18 +96,18 @@
       "id": "actor_combat_target",
       "struct": "Actor",
       "field": "runtime.currentCombatTarget",
-      "offset": 252,
+      "offset": 28,
       "type": "uint32 handle (relative to actor_runtime)",
-      "source": "Actor.h /* 0FC */",
+      "source": "Actor.h /* 0FC */ is the SE absolute offset; the runtime block starts at 0E0, so 0xFC - 0xE0",
       "verified_in_game": false
     },
     {
       "id": "actor_process",
       "struct": "Actor",
       "field": "runtime.currentProcess",
-      "offset": 240,
+      "offset": 16,
       "type": "AIProcess* (relative to actor_runtime)",
-      "source": "Actor.h /* 0F0 */",
+      "source": "Actor.h /* 0F0 */ is the SE absolute offset; the runtime block starts at 0E0, so 0xF0 - 0xE0",
       "verified_in_game": false
     },
     {
