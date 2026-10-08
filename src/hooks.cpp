@@ -14,11 +14,9 @@
 namespace hooks {
     namespace {
         using ProcessHit_t = void (*)(game::Actor* victim, void* hitData);
-        using MouseMove_t = void (*)(void* self, void* event, void* data);
         using Update_t = void (*)(game::Actor* self, float delta);
 
         ProcessHit_t g_origProcessHit = nullptr;
-        MouseMove_t g_origMouseMove = nullptr;
         Update_t g_origUpdate = nullptr;
 
         std::mutex g_msgLock;
@@ -26,7 +24,7 @@ namespace hooks {
 
         // --- hooked functions ---------------------------------------------------------------
 
-        std::atomic<int> g_hitCalls{ 0 }, g_mouseCalls{ 0 }, g_updateCalls{ 0 };
+        std::atomic<int> g_hitCalls{ 0 }, g_updateCalls{ 0 };
 
         void HitHook(game::Actor* victim, void* hit)
         {
@@ -35,18 +33,12 @@ namespace hooks {
             game::Actor* aggressor = game::LookupActor(game::Field<std::uint32_t>(hit, lay::hit_aggressor));
             if (victim && aggressor && !game::IsDead(victim)) {
                 cancel = duel::OnMeleeHit(victim, aggressor, game::Field<void*>(hit, lay::hit_weapon));
+            } else if (g_hitCalls <= 20) {
+                fhd::Log("melee hit: skipped (victim %s, aggressor %s)", victim ? (game::IsDead(victim) ? "dead" : "ok") : "none",
+                    aggressor ? "ok" : "not found");
             }
             game::Release(aggressor);
             if (!cancel) g_origProcessHit(victim, hit);
-        }
-
-        void MouseMoveHook(void* self, void* event, void* data)
-        {
-            int dx = game::Field<std::int32_t>(event, lay::mouse_move_x);
-            int dy = game::Field<std::int32_t>(event, lay::mouse_move_y);
-            if (g_mouseCalls++ < 3) fhd::Log("hooks: look handler call %d, mouse %d %d", g_mouseCalls.load(), dx, dy);
-            if (duel::OnMouseMove(dx, dy)) return;  // guard flick: camera stays still
-            g_origMouseMove(self, event, data);
         }
 
         void UpdateHook(game::Actor* self, float delta)
@@ -155,10 +147,6 @@ namespace hooks {
             whyNot = "no memory near the game for the hit trampoline";
             return false;
         }
-        if (!PatchVFunc(addr::vtbl_look_handler, reinterpret_cast<void*>(&MouseMoveHook), reinterpret_cast<void**>(&g_origMouseMove))) {
-            whyNot = "LookHandler vtable entry is not game code";
-            return false;
-        }
         if (!PatchVFunc(addr::vtbl_player_character, reinterpret_cast<void*>(&UpdateHook), reinterpret_cast<void**>(&g_origUpdate))) {
             whyNot = "PlayerCharacter::Update vtable entry is not game code";
             return false;
@@ -168,7 +156,7 @@ namespace hooks {
         std::int32_t rel = static_cast<std::int32_t>(reinterpret_cast<std::uintptr_t>(jump) - (site + 5));
         std::memcpy(call + 1, &rel, 4);
         WriteBytes(site, call, sizeof(call));
-        fhd::Log("hooks: hit call at +0x%llX, look handler and player update patched",
+        fhd::Log("hooks: hit call at +0x%llX and player update patched",
             static_cast<unsigned long long>(site - game::Addr(addr::melee_hit_caller)));
         return true;
     }

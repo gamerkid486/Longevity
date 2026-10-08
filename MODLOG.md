@@ -74,6 +74,26 @@
   scope, so the duels run without FOR HONOR sounds until there's a decision on that.
 - Documents is redirected to OneDrive on this PC, and the log was found there.
 
+## Run 3 (player's PC, 2026-10-07): duelist detected, mouse hook never fired
+- The 0.1.2 offset fix worked: `player duelist: yes (right hand form 00013790 type 0x29 anim 3)`.
+  Guarding, an opponent and melee hits were all logged, and the bottom indicator showed up.
+- `vtbl_look_handler[3]` (ID 523967) was **never called** on 1.7.104, so guard flicks and the camera
+  hold didn't work. 0.1.3 drops the LookHandler hook. The mouse is now read through DirectInput
+  (`IDirectInputDevice8::GetDeviceState`/`GetDeviceData`, patched on a throwaway mouse device's A
+  and W vtables, the same way the overlay patches Present). It uses no game addresses, and it zeroes
+  the axes while the player guards. `vtbl_look_handler` and `mouse_move_x/y` were removed from the
+  sheets.
+- The indicator stayed up after sheathing, because `IsDuelist` only checked the equipped weapon. Now
+  it also needs ActorState `weaponState` >= 3 (ActorState is at +0xC0 on AE 1.6.629+, and
+  `actorState2` at +0x0C, bits 5-7). If the ActorState subobject doesn't start with a game vtable,
+  the check switches itself off and logs once.
+- `opponent: found` was logged, but the player saw no enemy indicator. 0.1.3 logs the first time the
+  overlay draws it, to tell a drawing problem apart from the player missing it.
+- `player attacks npc, guards 1 vs 1 -> landed` is expected when the NPC is mid-attack (`blocked`
+  requires the victim not to be attacking). The log now says "(victim mid-attack)".
+- Only 2 duel hits were logged in a whole fight. 0.1.3 logs skipped hits (no aggressor, dead victim)
+  and the first NPC-vs-NPC hits, to find where the others went.
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.

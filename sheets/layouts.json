@@ -147,21 +147,21 @@
       "verified_in_game": false
     },
     {
-      "id": "mouse_move_x",
-      "struct": "MouseMoveEvent",
-      "field": "mouseInputX",
-      "offset": 40,
-      "type": "int32",
-      "source": "MouseMoveEvent.h // 28",
+      "id": "actor_state",
+      "struct": "Actor",
+      "field": "ActorState base",
+      "offset": 192,
+      "type": "ActorState subobject (has a vtable)",
+      "source": "Actor.h AsActorState: RelocateMemberIfNewer(1.6.629, 0xB8, 0xC0)",
       "verified_in_game": false
     },
     {
-      "id": "mouse_move_y",
-      "struct": "MouseMoveEvent",
-      "field": "mouseInputY",
-      "offset": 44,
-      "type": "int32",
-      "source": "MouseMoveEvent.h // 2C",
+      "id": "actor_state2",
+      "struct": "ActorState",
+      "field": "actorState2",
+      "offset": 12,
+      "type": "uint32 bitfield; weaponState is bits 5-7 (3 = drawn), relative to actor_state",
+      "source": "ActorState.h actorState2 // 0C, weaponState : 3 // 0:5",
       "verified_in_game": false
     }
   ]

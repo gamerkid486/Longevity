@@ -23,7 +23,7 @@ namespace duel {
         std::mt19937 g_rng{ 0xF0A1u };
 
         Guard g_playerGuard = Guard::top;
-        bool g_playerGuarding = false;
+        std::atomic<bool> g_playerGuarding{ false };
         float g_accX = 0, g_accY = 0;
         ULONGLONG g_lastMove = 0;
 
@@ -127,11 +127,13 @@ namespace duel {
         g_snap = s;
     }
 
-    bool OnMouseMove(int dx, int dy)
+    bool CameraHeld() { return g_playerGuarding && tun::lock_camera_while_guarding != 0; }
+
+    void OnMouseMove(long dx, long dy)
     {
         if (!g_playerGuarding) {
             g_accX = g_accY = 0;
-            return false;
+            return;
         }
         ULONGLONG now = GetTickCount64();
         if (now - g_lastMove > ULONGLONG(tun::flick_decay_ms)) g_accX = g_accY = 0;
@@ -152,13 +154,16 @@ namespace duel {
             }
             g_accX = g_accY = 0;
         }
-        return tun::lock_camera_while_guarding != 0;
     }
 
     bool OnMeleeHit(game::Actor* victim, game::Actor* aggressor, const void* weapon)
     {
         game::Actor* player = game::Player();
-        if (victim != player && aggressor != player) return RuleFor(Rule::not_a_duel).cancelHit;
+        if (victim != player && aggressor != player) {
+            static int logged = 0;
+            if (logged++ < 10) fhd::Log("melee hit: npc vs npc, not a duel");
+            return RuleFor(Rule::not_a_duel).cancelHit;
+        }
         if (!game::IsDuelist(victim) || !game::IsMeleeWeapon(weapon)) {
             fhd::Log("melee hit: not a duel (victim %s, weapon %s)", game::DescribeDuelist(victim).c_str(),
                 game::IsMeleeWeapon(weapon) ? "melee" : "not melee");
@@ -173,8 +178,9 @@ namespace duel {
         bool guardsMatch = blocked.guards == Cmp::any || (blocked.guards == Cmp::equal) == (vg == ag);
         if (guardsMatch && !(blocked.victimNotAttacking && victimAttacking)) hit = &blocked;
 
-        fhd::Log("melee hit: %s attacks %s, guards %d vs %d -> %s", aggressor == player ? "player" : "npc",
-            victim == player ? "player" : "npc", int(ag), int(vg), hit->id == Rule::blocked ? "blocked" : "landed");
+        fhd::Log("melee hit: %s attacks %s, guards %d vs %d%s -> %s", aggressor == player ? "player" : "npc",
+            victim == player ? "player" : "npc", int(ag), int(vg), victimAttacking ? " (victim mid-attack)" : "",
+            hit->id == Rule::blocked ? "blocked" : "landed");
 
         if (hit->sound != Snd::none) audio::Play(hit->sound);
         if (hit->attackerAnimEvent) game::NotifyAnimation(aggressor, hit->attackerAnimEvent);

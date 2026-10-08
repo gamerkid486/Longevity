@@ -64,12 +64,12 @@ namespace lay {
     inline constexpr std::ptrdiff_t weap_anim_type = 0x19D;  // TESObjectWEAP.weaponData.animationType (uint8 (1-6 = melee weapons))
     inline constexpr std::ptrdiff_t weap_form_type_value = 0x29;  // TESForm.FormType::Weapon (enum value (not an offset))
     inline constexpr std::ptrdiff_t lists_high_actors = 0x30;  // ProcessLists.highActorHandles (BSTArray<uint32>: data +0, size +0x10)
-    inline constexpr std::ptrdiff_t mouse_move_x = 0x28;  // MouseMoveEvent.mouseInputX (int32)
-    inline constexpr std::ptrdiff_t mouse_move_y = 0x2C;  // MouseMoveEvent.mouseInputY (int32)
+    inline constexpr std::ptrdiff_t actor_state = 0xC0;  // Actor.ActorState base (ActorState subobject (has a vtable))
+    inline constexpr std::ptrdiff_t actor_state2 = 0xC;  // ActorState.actorState2 (uint32 bitfield; weaponState is bits 5-7 (3 = drawn), relative to actor_state)
 }
 
 namespace addr {
-    enum Id : int { player_singleton, process_lists, melee_hit_caller, process_hit, get_smart_pointer, actor_is_blocking, actor_is_attacking, fixedstring_ctor, debug_notification, vtbl_look_handler, vtbl_player_character, COUNT };
+    enum Id : int { player_singleton, process_lists, melee_hit_caller, process_hit, get_smart_pointer, actor_is_blocking, actor_is_attacking, fixedstring_ctor, debug_notification, vtbl_player_character, COUNT };
     enum class Kind : int { data, function, call_site, vtable };
     struct AddrRow { const char* name; Kind kind; int callOffsetHint; int vfuncIndex; };
     inline constexpr AddrRow kRows[COUNT] = {
@@ -82,16 +82,15 @@ namespace addr {
         {"actor_is_attacking", Kind::function, -1, -1},
         {"fixedstring_ctor", Kind::function, -1, -1},
         {"debug_notification", Kind::function, -1, -1},
-        {"vtbl_look_handler", Kind::vtable, -1, 3},
         {"vtbl_player_character", Kind::vtable, -1, 173},
     };
     struct VersionTable { std::uint16_t v[4]; std::uintptr_t off[COUNT]; };
     inline constexpr VersionTable kVersions[] = {
-        {{1, 6, 640, 0}, {0x2fc1b78, 0x1f587d0, 0x660a70, 0x65ddc0, 0x13ae30, 0x6425f0, 0x65f0a0, 0xc61360, 0x91bc70, 0x1765fb8, 0x175ac70}},
-        {{1, 6, 659, 0}, {0x2fbbb58, 0x1f527d0, 0x660570, 0x65d8c0, 0x13ac30, 0x6420f0, 0x65eba0, 0xc60ac0, 0x91b3e0, 0x1760fa8, 0x1755c50}},
-        {{1, 6, 1130, 0}, {0x316e198, 0x20e96b0, 0x6bad60, 0x6b80b0, 0x179620, 0x69c8d0, 0x6b9390, 0xce7d90, 0x97aa30, 0x18acd88, 0x18a1a30}},
-        {{1, 6, 1170, 0}, {0x31874f8, 0x20f69b0, 0x6ba870, 0x6b7bc0, 0x179710, 0x69c3e0, 0x6b8ea0, 0xcec5d0, 0x97a5e0, 0x18b6d18, 0x18ab9c0}},
-        {{1, 6, 1179, 0}, {0x3188918, 0x20f7db0, 0x6bcaa0, 0x6b9df0, 0x179540, 0x69e610, 0x6bb0d0, 0xcedff0, 0x97c0b0, 0x18b80c8, 0x18acd70}},
-        {{1, 7, 104, 0}, {0x3230778, 0x219e570, 0x6cd2f0, 0x6ca640, 0x17ed00, 0x6aef60, 0x6cb920, 0xeb0f90, 0x991a30, 0x1935150, 0x19296c0}},
+        {{1, 6, 640, 0}, {0x2fc1b78, 0x1f587d0, 0x660a70, 0x65ddc0, 0x13ae30, 0x6425f0, 0x65f0a0, 0xc61360, 0x91bc70, 0x175ac70}},
+        {{1, 6, 659, 0}, {0x2fbbb58, 0x1f527d0, 0x660570, 0x65d8c0, 0x13ac30, 0x6420f0, 0x65eba0, 0xc60ac0, 0x91b3e0, 0x1755c50}},
+        {{1, 6, 1130, 0}, {0x316e198, 0x20e96b0, 0x6bad60, 0x6b80b0, 0x179620, 0x69c8d0, 0x6b9390, 0xce7d90, 0x97aa30, 0x18a1a30}},
+        {{1, 6, 1170, 0}, {0x31874f8, 0x20f69b0, 0x6ba870, 0x6b7bc0, 0x179710, 0x69c3e0, 0x6b8ea0, 0xcec5d0, 0x97a5e0, 0x18ab9c0}},
+        {{1, 6, 1179, 0}, {0x3188918, 0x20f7db0, 0x6bcaa0, 0x6b9df0, 0x179540, 0x69e610, 0x6bb0d0, 0xcedff0, 0x97c0b0, 0x18acd70}},
+        {{1, 7, 104, 0}, {0x3230778, 0x219e570, 0x6cd2f0, 0x6ca640, 0x17ed00, 0x6aef60, 0x6cb920, 0xeb0f90, 0x991a30, 0x19296c0}},
     };
 }

@@ -19,9 +19,10 @@ namespace duel {
 
     // Main thread, once per frame (PlayerCharacter::Update hook).
     void Tick();
-    // Main thread, from LookHandler::ProcessMouseMove. Returns true when the mouse move is consumed
-    // as a guard flick (camera stays still).
-    bool OnMouseMove(int dx, int dy);
+    // From the DirectInput mouse hook (input.cpp), with the mouse movement since the last read.
+    void OnMouseMove(long dx, long dy);
+    // True while the camera must stay still (the player is guarding).
+    bool CameraHeld();
     // From the melee hit hook (weapon = HitData.weapon). Returns true when the hit must be cancelled.
     bool OnMeleeHit(game::Actor* victim, game::Actor* aggressor, const void* weapon);
 }

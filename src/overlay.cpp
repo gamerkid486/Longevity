@@ -50,7 +50,12 @@ namespace overlay {
             if (!s.playerDuelist) return;
             ImDrawList* dl = ImGui::GetForegroundDrawList();
             DrawIndicator(dl, hud::player_indicator, s.playerGuard, true, s.playerGuarding);
-            if (s.hasOpponent) DrawIndicator(dl, hud::opponent_indicator, s.opponentGuard, true, s.opponentAttacking);
+            if (s.hasOpponent) {
+                static bool logged = false;
+                if (!logged) fhd::Log("overlay: drawing the opponent indicator");
+                logged = true;
+                DrawIndicator(dl, hud::opponent_indicator, s.opponentGuard, true, s.opponentAttacking);
+            }
         }
 
         void InitImGui(IDXGISwapChain* sc)

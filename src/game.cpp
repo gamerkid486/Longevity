@@ -118,11 +118,29 @@ namespace game {
         return anim >= 1 && anim <= 6;  // swords, daggers, axes, maces, greatswords, battleaxes/warhammers
     }
 
+    // ActorState::actorState2.weaponState (0 sheathed ... 3 drawn, 4-5 sheathing). -1 when the ActorState
+    // subobject doesn't start with a vtable in SkyrimSE.exe, i.e. the layout row is wrong for this build.
+    int WeaponState(Actor* a)
+    {
+        const void* st = reinterpret_cast<const char*>(a) + lay::actor_state;
+        auto vt = reinterpret_cast<std::uintptr_t>(VTable(st));
+        auto* nt = reinterpret_cast<IMAGE_NT_HEADERS64*>(g_base + reinterpret_cast<IMAGE_DOS_HEADER*>(g_base)->e_lfanew);
+        if (vt < g_base || vt >= g_base + nt->OptionalHeader.SizeOfImage) {
+            static bool logged = false;
+            if (!logged) fhd::Log("ActorState at +0x%llX has no game vtable; weapon drawn check is off", static_cast<unsigned long long>(lay::actor_state));
+            logged = true;
+            return -1;
+        }
+        return (Field<std::uint32_t>(st, lay::actor_state2) >> 5) & 7;
+    }
+
     bool IsDuelist(Actor* a)
     {
         if (!a) return false;
         void* process = Field<void*>(a, lay::actor_runtime + lay::actor_process);
-        return process && IsMeleeWeapon(Field<void*>(process, lay::process_right_hand));
+        if (!process || !IsMeleeWeapon(Field<void*>(process, lay::process_right_hand))) return false;
+        int ws = WeaponState(a);
+        return ws < 0 || ws >= 3;  // drawn, or can't tell
     }
 
     std::string DescribeDuelist(Actor* a)
@@ -134,8 +152,8 @@ namespace game {
         if (!form) return "right hand empty";
         char buf[96];
         std::uint8_t type = Field<std::uint8_t>(form, lay::form_type);
-        std::snprintf(buf, sizeof(buf), "right hand form %08X type 0x%02X anim %u", Field<std::uint32_t>(form, lay::form_id),
-            type, type == lay::weap_form_type_value ? Field<std::uint8_t>(form, lay::weap_anim_type) : 0u);
+        std::snprintf(buf, sizeof(buf), "right hand form %08X type 0x%02X anim %u, weapon state %d", Field<std::uint32_t>(form, lay::form_id),
+            type, type == lay::weap_form_type_value ? Field<std::uint8_t>(form, lay::weap_anim_type) : 0u, WeaponState(a));
         return buf;
     }
 

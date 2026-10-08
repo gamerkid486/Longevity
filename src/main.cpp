@@ -2,6 +2,7 @@
 #include "forhonor.h"
 #include "game.h"
 #include "hooks.h"
+#include "input.h"
 #include "log.h"
 #include "overlay.h"
 
@@ -29,6 +30,7 @@ namespace {
             fhd::Log("hooks not installed: %s. FOR HONOR Duels stays off.", why.c_str());
             return 0;
         }
+        if (!input::Install()) fhd::Log("mouse hooks unavailable: guard flicks are off");
         if (!overlay::Install()) fhd::Log("guard indicators unavailable");
 
         std::string status = forhonor::PrepareSounds();
