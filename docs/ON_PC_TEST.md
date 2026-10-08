@@ -19,16 +19,17 @@ game folder.
 
    Report both paths and the exact file version of `SkyrimSE.exe`, for example with PowerShell:
    `(Get-Item SkyrimSE.exe).VersionInfo.FileVersion`. The supported versions are 1.6.640, 1.6.659,
-   1.6.1130, 1.6.1170 and 1.6.1179. If the version isn't one of these, stop and report it.
+   1.6.1130, 1.6.1170, 1.6.1179 and 1.7.104. If the version isn't one of these, stop and report it.
 2. **Check what's already in the Skyrim folder.** List any of these files: `dinput8.dll`,
    `winmm.dll`, `version.dll`, `*.asi`, `skse64_loader.exe`, and `d3d11.dll` or `dxgi.dll`
    (ReShade/ENB). Don't remove anything.
 3. **Install Ultimate ASI Loader if it's missing.** Ask the user first. Then download the official x64
    build from https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases (the x64 zip asset) and put
    its `dinput8.dll` next to `SkyrimSE.exe`. Melty installs this loader for players itself; it's only
-   needed for this manual test. Write down every file you add.
-4. **Install the test build.** Check `release/FHDuels-0.1.0.zip` against
-   `release/FHDuels-0.1.0.zip.sha256`. Then extract it into the Skyrim folder; it adds `FHDuels.asi`
+   needed for this manual test. Write down every file you add. (Run 1 found Ultimate ASI Loader 9.7.4
+   already installed, so this step is usually skipped.)
+4. **Install the test build.** Check `release/FHDuels-0.1.1.zip` against
+   `release/FHDuels-0.1.1.zip.sha256`. Then extract it into the Skyrim folder; it adds `FHDuels.asi`
    and an `FHDuels/` folder. Write down the added files so they can be removed later.
 5. **Turn on the sound list for the next launch.** Set a user environment variable with
    `setx FHDUELS_DUMP_INDEX 1`. The game has to inherit it: either have the user restart Steam, or
@@ -43,7 +44,7 @@ game folder.
    - whether a notification appears at the top left, and what it says.
 
    If you have screenshot tools, capture the game window only, showing the indicators during a fight.
-7. **Collect the results.** After the user quits the game, copy these into `tests/results/run1/`:
+7. **Collect the results.** After the user quits the game, copy these into `tests/results/run2/`:
    - `Documents/My Games/Skyrim Special Edition/FHDuels.log`;
    - `%LOCALAPPDATA%/FHDuels/index.csv`, if it exists. If it's over 20 MB, commit a gzip of it instead;
    - a `notes.md` file with the game versions and paths, the files added to the game folder, the
@@ -53,7 +54,7 @@ game folder.
    the game folders.
 8. **Remove the environment variable:** `reg delete HKCU\Environment /v FHDUELS_DUMP_INDEX /f`. Leave
    the mod installed unless the user asks you to remove it.
-9. **Send the results back.** Commit `tests/results/run1/`, push it to
+9. **Send the results back.** Commit `tests/results/run2/`, push it to
    `claude/skyrim-mod-melty-8pkxd9`, and tell the user to go back to the cloud session and say
    "results are pushed".
 

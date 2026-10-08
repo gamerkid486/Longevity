@@ -116,6 +116,9 @@ namespace hooks {
             auto** table = reinterpret_cast<void**>(game::Addr(vt));
             int index = addr::kRows[vt].vfuncIndex;
             if (!InExeText(reinterpret_cast<std::uintptr_t>(table[index]))) return false;
+            // The target's RVA lets a log from a new game version be checked against Address Library.
+            fhd::Log("hooks: %s[0x%X] -> +0x%llX", addr::kRows[vt].name, index,
+                static_cast<unsigned long long>(reinterpret_cast<std::uintptr_t>(table[index]) - game::Base()));
             *orig = table[index];
             WriteBytes(reinterpret_cast<std::uintptr_t>(&table[index]), &hook, sizeof(void*));
             return true;

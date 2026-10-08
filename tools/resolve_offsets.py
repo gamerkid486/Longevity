@@ -2,6 +2,8 @@
 
 Usage: python3 tools/resolve_offsets.py <path/to/skyrimae.relib>
 Writes sheets/game_addresses.json in place, one offset per supported version (games.json).
+Versions the .relib doesn't cover (1.7.x, read from the player's versionlib with
+tools/versionlib_dump.ps1) keep the offsets already in the sheet.
 """
 import json
 import os
@@ -21,9 +23,12 @@ def main(relib_path):
     path = os.path.join(ROOT, "game_addresses.json")
     sheet = json.load(open(path))
     for row in sheet["rows"]:
-        row["offsets"] = {}
+        old, row["offsets"] = row["offsets"], {}
         for ver in versions:
-            off = by_name.get(ver, {}).get(row["ae_id"])
+            if ver not in by_name:
+                row["offsets"][ver] = old.get(ver, "")
+                continue
+            off = by_name[ver].get(row["ae_id"])
             row["offsets"][ver] = hex(off) if off is not None else ""
     json.dump(sheet, open(path, "w"), indent=2)
     print("resolved", len(sheet["rows"]), "rows x", len(versions), "versions")

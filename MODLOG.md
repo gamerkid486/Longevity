@@ -35,6 +35,25 @@
   real FOR HONOR packs. One forum report says some packs are encrypted, so the plugin logs those and
   skips them.
 
+## Run 1 (player's PC, 2026-10-07): stopped at the version check
+- The player's Skyrim is **1.7.104.0**. The public AddressLibraryDatabase (last updated 2025-05) stops
+  at 1.6.1179, but the player has Address Library's `versionlib-1-7-104-0.bin` installed.
+- Address Library 1.7.x files are **format 5**: four version ints, a 64-byte exe name, pointer size, a
+  zero int, the entry count, then a uint32 offset for every ID starting at ID 0 (0 means no address).
+  The header is 96 bytes, and the player's file is exactly 96 + 4 × 565759 bytes. The first 20 entries
+  equal the 1.6.1179 offsets from the `.relib`.
+- `tools/versionlib_dump.ps1` reads formats 2 and 5 on the player's PC and prints only our 11 offsets.
+  Its format 2 reader reproduced every 1.6.1179 offset in the sheet. The 1.7.104 offsets were added
+  to `game_addresses.json` from that output. `resolve_offsets.py` keeps versions the `.relib` doesn't
+  have.
+- Hit hook sanity check: `process_hit`→`melee_hit_caller` is +0x2CB0 and `process_hit`→
+  `actor_is_attacking` is +0x12E0 in both 1.6.1179 and 1.7.104, so those functions moved as a block.
+- **Unverified for 1.7.104:** the vtable slot indices (LookHandler 3, PlayerCharacter 0xAD) and the
+  struct layouts in `layouts.json` (written for 1.6.629+). The plugin now logs each patched vtable
+  slot's target RVA, so run 2's log can be checked against Address Library.
+- Also seen: `SkyCraft.asi` (another ASI mod) and SKSE built for 1.6.1170, which doesn't match the
+  game. Neither is ours, and both were left alone.
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.

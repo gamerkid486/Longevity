@@ -11,7 +11,7 @@
       "how_it_is_read": "ASI plugin loaded by Ultimate ASI Loader inside SkyrimSE.exe",
       "store_ids": {"steam": 489830},
       "exe": "SkyrimSE.exe",
-      "versions_supported": ["1.6.640.0", "1.6.659.0", "1.6.1130.0", "1.6.1170.0", "1.6.1179.0"],
+      "versions_supported": ["1.6.640.0", "1.6.659.0", "1.6.1130.0", "1.6.1170.0", "1.6.1179.0", "1.7.104.0"],
       "anti_cheat": "none (offline single-player)",
       "modified_by_mod": true
     },

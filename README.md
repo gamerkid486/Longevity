@@ -26,7 +26,7 @@ self-test, and the plugin loads and safely switches itself off outside Skyrim. N
 ## Requirements
 
 - The Elder Scrolls V: Skyrim Special Edition / Anniversary Edition, version 1.6.640, 1.6.659, 1.6.1130,
-  1.6.1170 or 1.6.1179. 1.5.97 isn't supported yet.
+  1.6.1170, 1.6.1179 or 1.7.104. 1.5.97 isn't supported yet.
 - FOR HONOR installed on the same PC, for its sounds. Its files are only read: FOR HONOR is never
   started or changed, so your Ubisoft account isn't touched.
 - Ultimate ASI Loader, which Melty installs.
@@ -40,7 +40,7 @@ broken reference and unused row before each build.
 ```
 ./build.sh          # gen + preflight + dist/FHDuels.asi (mingw-w64)
 ./build.sh test     # also builds build/selftest.exe (run it with wine64 or on Windows)
-./package.sh 0.1.0  # dist/FHDuels-0.1.0.zip
+./package.sh 0.1.1  # dist/FHDuels-0.1.1.zip
 python3 tools/resolve_offsets.py skyrimae.relib   # refresh per-version offsets
 ```
 
