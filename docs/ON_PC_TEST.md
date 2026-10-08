@@ -23,6 +23,19 @@ game folder.
 2. **Check what's already in the Skyrim folder.** List any of these files: `dinput8.dll`,
    `winmm.dll`, `version.dll`, `*.asi`, `skse64_loader.exe`, and `d3d11.dll` or `dxgi.dll`
    (ReShade/ENB). Don't remove anything.
+2b. **Set other mods aside for the test (the user agreed to this; still confirm before you start).**
+   Everything here must be reversible: rename or switch off, never delete. Write each change into
+   notes.md so step 8 can undo it.
+   - Other ASI mods: rename each `*.asi` except `FHDuels.asi` to `*.asi.off` (for example
+     `SkyCraft.asi`). Keep `dinput8.dll`, since it loads our mod.
+   - Plugins from Nexus or Creations: copy `%LOCALAPPDATA%\Skyrim Special Edition\Plugins.txt` to
+     `Plugins.txt.fhduels-backup`. Then remove the leading `*` from every line except the official
+     masters (`Skyrim.esm`, `Update.esm`, `Dawnguard.esm`, `HearthFires.esm`, `Dragonborn.esm`). That
+     switches them off without touching their files. If a mod manager (Vortex or Mod Organizer 2) is
+     installed, tell the user, because it may rewrite this file the next time it opens.
+   - Leave SKSE alone. The game is started from Steam or `SkyrimSE.exe`, not `skse64_loader.exe`.
+   - Saves made with those mods may warn about missing content when loaded. That's fine for a
+     throwaway save. Don't save over a save the user cares about.
 3. **Install Ultimate ASI Loader if it's missing.** Ask the user first. Then download the official x64
    build from https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases (the x64 zip asset) and put
    its `dinput8.dll` next to `SkyrimSE.exe`. Melty installs this loader for players itself; it's only
@@ -53,7 +66,9 @@ game folder.
    Never commit game files, extracted sounds (`.wem`/`.wav`), tokens, or personal paths other than
    the game folders.
 8. **Remove the environment variable:** `reg delete HKCU\Environment /v FHDUELS_DUMP_INDEX /f`. Leave
-   the mod installed unless the user asks you to remove it.
+   the mod installed unless the user asks you to remove it. Then ask the user whether to put their
+   other mods back now. If they say yes, undo step 2b: rename the `*.asi.off` files back and restore
+   `Plugins.txt` from `Plugins.txt.fhduels-backup`.
 9. **Send the results back.** Commit `tests/results/run2/`, push it to
    `claude/skyrim-mod-melty-8pkxd9`, and tell the user to go back to the cloud session and say
    "results are pushed".
