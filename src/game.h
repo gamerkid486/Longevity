@@ -36,6 +36,7 @@ namespace game {
     float DistanceSq(Actor* a, Actor* b);
     // Degrees a must turn (positive = clockwise/right) to face b, in [-180, 180].
     float YawErrorDeg(Actor* a, Actor* b);
+    float HeadingDeg(Actor* a);  // data.angle.z in degrees (0 = north, clockwise)
     std::uint32_t CombatTargetHandle(Actor* a);
 
     // Main thread only.

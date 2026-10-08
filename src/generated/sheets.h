@@ -18,8 +18,9 @@ namespace tun {
     inline constexpr int flick_cooldown_ms = 150;  // ms: Shortest time between two guard switches, so circling the mouse doesn't cycle guards
     inline constexpr int lock_camera_while_guarding = 1;  // bool: Mouse does not turn the camera while block is held (FOR HONOR guard mode)
     inline constexpr int lock_on_while_guarding = 1;  // bool: While block is held and there's an opponent, the camera turns to face them (FOR HONOR guard mode)
-    inline constexpr float lock_on_gain = 0.4f;  // mouse counts per degree: Turn speed: mouse movement added per frame for each degree the player faces away from the opponent
-    inline constexpr int lock_on_max_counts = 30;  // mouse counts: Most mouse movement added in one frame, so big turns stay smooth
+    inline constexpr float lock_on_fraction = 0.3f;  // 0-1 per frame: Share of the remaining angle to the opponent turned each frame (higher = snappier, too high wobbles)
+    inline constexpr float lock_on_max_deg_per_frame = 6.0f;  // degrees: Fastest lock-on turn in one frame, so big turns stay smooth
+    inline constexpr float lock_on_start_deg_per_count = 0.05f;  // degrees per mouse count: Starting guess of how far one mouse count turns the player (run 6 measured about 0.05); refined while turning
     inline constexpr float lock_on_deadzone_deg = 1.5f;  // degrees: No turning when already this close to facing the opponent
     inline constexpr int npc_guard_hold_min_ms = 1200;  // ms: Shortest time an NPC keeps a guard
     inline constexpr int npc_guard_hold_max_ms = 2600;  // ms: Longest time an NPC keeps a guard

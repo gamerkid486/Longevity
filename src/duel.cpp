@@ -33,40 +33,55 @@ namespace duel {
         std::mutex g_snapLock;
         Snapshot g_logged;  // last state written to the log (main thread)
 
-        // Lock-on: Tick measures how far the player faces away from the opponent; the mouse hook
-        // turns by that much. g_lockSign flips if turning keeps making it worse (inverted mouse).
+        // Lock-on: Tick measures how far the player faces away from the opponent, and the mouse hook
+        // turns a share of that each frame. While guarding, the player's own mouse X is zeroed, so the
+        // heading only changes through our counts: that measures degrees per count (the player's mouse
+        // sensitivity, signed, so an inverted mouse works too).
         std::atomic<float> g_lockErr{ NAN };
+        std::atomic<float> g_degPerCount{ float(tun::lock_on_start_deg_per_count) };
         std::atomic<long> g_lockSent{ 0 };
-        float g_lockPrevErr = NAN;
-        int g_lockWorse = 0, g_lockFlips = 0;
-        std::atomic<int> g_lockSign{ 1 };
+        float g_lockPrevHeading = NAN;
+        int g_lockOpposite = 0;  // samples in a row turning the other way than expected
+        ULONGLONG g_lockLastLog = 0;
         std::atomic<unsigned> g_frame{ 0 }, g_lockFrame{ 0 };  // turn at most once per game frame
 
         void TrackLockOn(game::Actor* player, game::Actor* opponent)
         {
+            long sent = g_lockSent.exchange(0);
             if (!opponent || !g_playerGuarding || !tun::lock_on_while_guarding) {
                 g_lockErr = NAN;
-                g_lockPrevErr = NAN;
-                g_lockWorse = 0;
+                g_lockPrevHeading = NAN;
                 return;
             }
-            float err = game::YawErrorDeg(player, opponent);
-            long sent = g_lockSent.exchange(0);
-            if (!std::isnan(g_lockPrevErr) && std::labs(sent) > 2) {
-                // Worse = same side and further away. An overshoot changes sides, which means the gain is
-                // too high, not that the direction is wrong.
-                bool sameSide = (err > 0) == (g_lockPrevErr > 0);
-                g_lockWorse = sameSide && std::fabs(err) > std::fabs(g_lockPrevErr) + 0.1f ? g_lockWorse + 1 : 0;
-                if (g_lockWorse >= 10 && g_lockFlips < 3) {
-                    g_lockSign = -g_lockSign;
-                    ++g_lockFlips;
-                    g_lockWorse = 0;
-                    fhd::Log("lock-on: turning made it worse, flipped direction (now %d)", g_lockSign.load());
+            float heading = game::HeadingDeg(player);
+            if (!std::isnan(g_lockPrevHeading) && std::labs(sent) >= 3) {
+                float turned = std::remainder(heading - g_lockPrevHeading, 360.0f);
+                float sample = turned / float(sent);
+                if (std::fabs(sample) > 0.002f && std::fabs(sample) < 2.0f && std::fabs(turned) < 30.0f) {
+                    // Size and direction are learned apart: smoothing a signed value through zero
+                    // would blow the turn up. Three samples the other way mean an inverted mouse.
+                    float k = g_degPerCount;
+                    if ((sample > 0) != (k > 0)) {
+                        if (++g_lockOpposite >= 3) {
+                            g_degPerCount = -k;
+                            g_lockOpposite = 0;
+                            fhd::Log("lock-on: mouse turns the other way, direction flipped");
+                        }
+                    } else {
+                        g_lockOpposite = 0;
+                        g_degPerCount = std::copysign(0.8f * std::fabs(k) + 0.2f * std::fabs(sample), k);
+                    }
                 }
             }
-            g_lockPrevErr = err;
+            g_lockPrevHeading = heading;
+            float err = game::YawErrorDeg(player, opponent);
             g_lockErr = err;
             ++g_frame;
+            ULONGLONG now = GetTickCount64();
+            if (now - g_lockLastLog >= 1000) {
+                g_lockLastLog = now;
+                fhd::Log("lock-on: facing %.1f deg off, %.4f deg per count", err, g_degPerCount.load());
+            }
         }
 
         Guard RandomGuard()
@@ -174,11 +189,12 @@ namespace duel {
         float err = g_lockErr;
         if (!CameraHeld() || std::isnan(err) || std::fabs(err) < tun::lock_on_deadzone_deg) return 0;
         if (g_lockFrame.exchange(g_frame) == g_frame) return 0;  // already turned this frame
-        float c = std::clamp(err * tun::lock_on_gain * float(g_lockSign), -float(tun::lock_on_max_counts), float(tun::lock_on_max_counts));
-        long counts = std::lround(c);
+        float step = std::clamp(err * float(tun::lock_on_fraction), -float(tun::lock_on_max_deg_per_frame), float(tun::lock_on_max_deg_per_frame));
+        float k = g_degPerCount;
+        if (std::fabs(k) < 0.002f) k = std::copysign(0.002f, k);
+        long counts = std::lround(step / k);
+        if (counts == 0) counts = (step > 0) == (k > 0) ? 1 : -1;  // always nudge outside the dead zone
         g_lockSent += counts;
-        static int logged = 0;
-        if (counts && logged++ < 5) fhd::Log("lock-on: facing %.1f deg off, turning %ld", err, counts);
         return counts;
     }
 

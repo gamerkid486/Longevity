@@ -178,6 +178,8 @@ namespace game {
         return err * 180.0f / 3.14159265f;
     }
 
+    float HeadingDeg(Actor* a) { return Field<float>(a, lay::refr_angle_z) * 180.0f / 3.14159265f; }
+
     std::uint32_t CombatTargetHandle(Actor* a)
     {
         return Field<std::uint32_t>(a, lay::actor_runtime + lay::actor_combat_target);

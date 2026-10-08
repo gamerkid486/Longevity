@@ -122,7 +122,8 @@ namespace audio {
         std::lock_guard lk(g_lock);
         auto it = g_clips.find(id);
         if (!g_master || it == g_clips.end() || it->second.empty()) return;
-        Clip& c = it->second[g_rng() % it->second.size()];
+        std::size_t pick = g_rng() % it->second.size();
+        Clip& c = it->second[pick];
         IXAudio2SourceVoice* voice = nullptr;
         if (FAILED(g_xa->CreateSourceVoice(&voice, &c.fmt))) return;
         XAUDIO2_BUFFER buf{};
@@ -132,6 +133,7 @@ namespace audio {
         voice->SetVolume(RowVolume(id));
         voice->SubmitSourceBuffer(&buf);
         voice->Start();
+        fhd::Log("audio: played sound %d clip %zu", int(id), pick);
         // Voices live in a ring of 16: the oldest is destroyed (cut off if somehow still playing).
         static IXAudio2SourceVoice* ring[16]{};
         static int next = 0;

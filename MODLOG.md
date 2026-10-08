@@ -146,6 +146,26 @@
   matches and one decoy). loadtest: LoadLibrary ok. Pass vgmstream to selftest as an absolute
   `Z:\` path under Wine, because a relative path made both ExtractWav checks fail.
 
+## Run 6 (player's PC, 2026-10-08): block sounds work, lock-on too slow and then turned away
+- Skyrim block sounds: 23 of 6198 archive files match `/wpn/|block`
+  (`sound/fx/wpn/block/{axe,blade,blade2hand,...}`), 6 are loaded, and the player heard the clang.
+  The archive is read only; WAVs go to `%LOCALAPPDATA%/FHDuels`. 0.1.6 logs each play
+  ("audio: played sound N clip i") to tell our clip apart from Skyrim's own.
+- Lock-on turned the right way but slowly: 2 counts per frame closed about 0.1° per frame, so this
+  player's mouse is about **0.05° per count**. A few seconds of moving around then tripped the
+  "made it worse" check three times (the player and enemy moving makes |err| grow even when the
+  direction is right). It ended inverted and turned away.
+- 0.1.6 replaces the gain and the flip check. While guarding, the player's mouse X is zeroed, so
+  the heading only changes through our counts. Each frame measures degrees per count, starting at
+  `lock_on_start_deg_per_count` = 0.05, and the hook turns `lock_on_fraction` (0.3) of the
+  remaining error per frame, capped at `lock_on_max_deg_per_frame` (6°). That adapts to any mouse
+  sensitivity. The size is smoothed, and the direction is learned separately: three samples in a
+  row turning the other way flip it, which handles inverted mice. The samples come from our own
+  counts, not the enemy's movement, so circling can't trigger a flip. A simulation (1 frame of input
+  lag, the target moving 0.5° per frame, 0.01/0.05/0.2/-0.05° per count, starting 90° off) settles
+  within the dead zone by about 30 frames in every case. The log has one lock-on line per second
+  (error and degrees per count).
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.
