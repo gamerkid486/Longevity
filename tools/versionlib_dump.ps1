@@ -17,11 +17,31 @@ using System.Collections.Generic;
 using System.IO;
 public static class VersionLib {
     public static string Header;
+    // For an unknown format: try "header of H bytes, then a dense table indexed by ID" layouts and
+    // score how many of our IDs land near their 1.6.1179 offset (patches move code by a few MB at most).
+    public static List<string> Probe(string path, ulong[] ids, ulong[] near) {
+        byte[] b = File.ReadAllBytes(path);
+        var hits = new List<string>();
+        foreach (int elem in new[] { 4, 8 }) {
+            for (int h = 0; h <= 1024; h += 4) {
+                int score = 0;
+                for (int k = 0; k < ids.Length; k++) {
+                    long pos = h + (long)ids[k] * elem;
+                    if (pos + elem > b.Length) continue;
+                    ulong v = elem == 4 ? BitConverter.ToUInt32(b, (int)pos) : BitConverter.ToUInt64(b, (int)pos);
+                    if (v != 0 && v + 0x800000 > near[k] && v < near[k] + 0x800000) score++;
+                }
+                if (score >= ids.Length / 2) hits.Add(String.Format("elem={0} header={1} score={2}/{3}", elem, h, score, ids.Length));
+            }
+        }
+        return hits;
+    }
     // Address Library format 2 (CommonLibSSE IDDatabase): delta-encoded (id, offset) pairs.
     public static Dictionary<ulong, ulong> Load(string path) {
         var r = new BinaryReader(File.OpenRead(path));
         try {
             int format = r.ReadInt32();
+            if (format != 2) { Header = "format=" + format; throw new Exception("unknown format " + format); }
             int v0 = r.ReadInt32(), v1 = r.ReadInt32(), v2 = r.ReadInt32(), v3 = r.ReadInt32();
             int nameLen = r.ReadInt32();
             string name = System.Text.Encoding.ASCII.GetString(r.ReadBytes(nameLen));
@@ -29,7 +49,6 @@ public static class VersionLib {
             int count = r.ReadInt32();
             Header = String.Format("format={0} version={1}.{2}.{3}.{4} name={5} ptr={6} count={7}",
                 format, v0, v1, v2, v3, name, ptrSize, count);
-            if (format != 2) throw new Exception("unknown format " + format);
             var map = new Dictionary<ulong, ulong>(count);
             ulong prevId = 0, prevOff = 0;
             for (int i = 0; i < count; i++) {
@@ -80,7 +99,25 @@ foreach ($v in $Versions) {
     } catch {
         "error: $($_.Exception.Message)"
         "header: $([VersionLib]::Header)"
-        "first 64 bytes: " + (([IO.File]::ReadAllBytes($path)[0..63] | ForEach-Object { $_.ToString("x2") }) -join " ")
+        $bytes = [IO.File]::ReadAllBytes($path)
+        "size: $($bytes.Length)"
+        "first 256 bytes:"
+        for ($o = 0; $o -lt 256; $o += 32) { "  {0,4}: {1}" -f $o, (($bytes[$o..($o + 31)] | ForEach-Object { $_.ToString("x2") }) -join " ") }
+        $ids = [uint64[]]@($sheet.rows | ForEach-Object { $_.ae_id })
+        $near = [uint64[]]@($sheet.rows | ForEach-Object { [Convert]::ToUInt64(($_.offsets.'1.6.1179.0' -replace "^0x", ""), 16) })
+        $hits = [VersionLib]::Probe($path, $ids, $near)
+        "probe: " + $(if ($hits.Count) { $hits -join "; " } else { "no dense-table layout fits" })
+        foreach ($hit in $hits) {
+            if ($hit -match "elem=(\d+) header=(\d+)") {
+                $elem = [int]$Matches[1]; $h = [int]$Matches[2]
+                "  layout elem=$elem header=$h"
+                foreach ($row in $sheet.rows) {
+                    $pos = $h + [int64]$row.ae_id * $elem
+                    $val = if ($elem -eq 4) { [BitConverter]::ToUInt32($bytes, $pos) } else { [BitConverter]::ToUInt64($bytes, $pos) }
+                    "    {0,-22} {1,-7} 0x{2:x}  (1.6.1179: {3})" -f $row.id, $row.ae_id, $val, $row.offsets.'1.6.1179.0'
+                }
+            }
+        }
         continue
     }
     "header: $([VersionLib]::Header)"
