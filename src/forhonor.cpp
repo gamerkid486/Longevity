@@ -2,6 +2,7 @@
 
 #include "audio.h"
 #include "log.h"
+#include "skyrimsnd.h"
 
 #include <windows.h>
 #include <shlobj.h>
@@ -167,21 +168,6 @@ namespace forhonor {
             table(sounds, false);
             return true;
         }
-
-        bool RunVgmstream(const fs::path& exe, const fs::path& in, const fs::path& out)
-        {
-            std::wstring cmd = L"\"" + exe.wstring() + L"\" -o \"" + out.wstring() + L"\" \"" + in.wstring() + L"\"";
-            STARTUPINFOW si{ sizeof(si) };
-            PROCESS_INFORMATION pi{};
-            if (!CreateProcessW(nullptr, cmd.data(), nullptr, nullptr, FALSE, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) return false;
-            WaitForSingleObject(pi.hProcess, 15000);
-            DWORD code = 1;
-            GetExitCodeProcess(pi.hProcess, &code);
-            CloseHandle(pi.hThread);
-            CloseHandle(pi.hProcess);
-            std::error_code ec;
-            return code == 0 && fs::exists(out, ec);
-        }
     }
 
     std::wstring FindInstall()
@@ -190,6 +176,21 @@ namespace forhonor {
         std::wstring dir = FromSteam();
         if (dir.empty()) dir = FromUbisoft();
         return dir;
+    }
+
+    bool ConvertToWav(const std::wstring& exe, const std::wstring& in, const std::wstring& out)
+    {
+        std::wstring cmd = L"\"" + exe + L"\" -o \"" + out + L"\" \"" + in + L"\"";
+        STARTUPINFOW si{ sizeof(si) };
+        PROCESS_INFORMATION pi{};
+        if (!CreateProcessW(nullptr, cmd.data(), nullptr, nullptr, FALSE, CREATE_NO_WINDOW, nullptr, nullptr, &si, &pi)) return false;
+        WaitForSingleObject(pi.hProcess, 15000);
+        DWORD code = 1;
+        GetExitCodeProcess(pi.hProcess, &code);
+        CloseHandle(pi.hThread);
+        CloseHandle(pi.hProcess);
+        std::error_code ec;
+        return code == 0 && fs::exists(out, ec);
     }
 
     namespace {
@@ -230,34 +231,33 @@ namespace forhonor {
         fs::create_directories(raw.parent_path(), ec);
         std::vector<char> bytes = ReadRange(e->second.pck, e->second.offset, e->second.size);
         std::ofstream(raw, std::ios::binary).write(bytes.data(), std::streamsize(bytes.size()));
-        bool ok = RunVgmstream(vgmstreamExe, raw, wavOut);
+        bool ok = ConvertToWav(vgmstreamExe, raw.wstring(), wavOut);
         fs::remove(raw, ec);  // keep only the converted WAV, on this PC only
         return ok;
     }
 
     std::string PrepareSounds()
     {
-        std::wstring root = FindInstall();
-        if (root.empty()) {
-            fhd::Log("forhonor: install not found (Steam app %d, Ubisoft Connect, FHDUELS_FORHONOR_DIR)", kSteamAppId);
-            return "FOR HONOR Duels: FOR HONOR is not installed, so its sounds are silent.";
-        }
-        fhd::Log("forhonor: install at %s", fs::path(root).string().c_str());
-        IndexInstall(root);
-
         std::error_code ec;
         fs::path cache = fhd::CacheDir();
         fs::create_directories(cache, ec);
-        if (const wchar_t* dump = _wgetenv(L"FHDUELS_DUMP_INDEX"); dump && *dump == L'1' && WriteIndexCsv(cache / L"index.csv")) {
-            fhd::Log("forhonor: wrote index.csv");
+        fs::path vgm = fs::path(fhd::PluginDir()) / L"FHDuels" / L"vgmstream" / L"vgmstream-cli.exe";
+
+        std::wstring root = FindInstall();
+        if (root.empty()) {
+            fhd::Log("forhonor: install not found (Steam app %d, Ubisoft Connect, FHDUELS_FORHONOR_DIR)", kSteamAppId);
+        } else {
+            fhd::Log("forhonor: install at %s", fs::path(root).string().c_str());
+            IndexInstall(root);
+            if (const wchar_t* dump = _wgetenv(L"FHDUELS_DUMP_INDEX"); dump && *dump == L'1' && WriteIndexCsv(cache / L"index.csv")) {
+                fhd::Log("forhonor: wrote index.csv");
+            }
         }
 
-        fs::path vgm = fs::path(fhd::PluginDir()) / L"FHDuels" / L"vgmstream" / L"vgmstream-cli.exe";
-        int ready = 0, wanted = 0;
+        int fromForHonor = 0, fromSkyrim = 0;
         for (const auto& row : kSounds) {
             std::vector<std::wstring> wavs;
-            for (int i = 0; i < row.wemCount; ++i) {
-                ++wanted;
+            for (int i = 0; i < row.wemCount && !root.empty(); ++i) {
                 std::uint32_t id = row.wemIds[i];
                 std::string name = row.cacheFile;
                 name.replace(name.find("{id}"), 4, std::to_string(id));
@@ -269,11 +269,16 @@ namespace forhonor {
                 wavs.push_back(wav.wstring());
             }
             audio::Load(row.id, wavs);
-            if (audio::Ready(row.id)) ready += int(wavs.size());
+            if (audio::Ready(row.id)) {
+                fromForHonor += int(wavs.size());
+                continue;
+            }
+            // FOR HONOR couldn't supply this sound (not installed, none chosen, or encrypted packs).
+            if (skyrimsnd::Load(row, vgm.wstring(), cache.wstring()) && audio::Ready(row.id)) ++fromSkyrim;
         }
-        fhd::Log("forhonor: %d of %d sounds ready", ready, wanted);
-        if (wanted == 0) return "FOR HONOR Duels: this build has no FOR HONOR sounds chosen yet.";
-        if (ready == 0) return "FOR HONOR Duels: FOR HONOR's sounds could not be read from your install.";
-        return "";
+        fhd::Log("sounds: %d FOR HONOR clip(s), %d sound(s) from Skyrim", fromForHonor, fromSkyrim);
+        if (fromForHonor > 0) return "";
+        if (fromSkyrim > 0) return "FOR HONOR Duels: hold block and flick the mouse to change guard. Using Skyrim's block sounds.";
+        return "FOR HONOR Duels: hold block and flick the mouse to change guard. No duel sounds found.";
     }
 }

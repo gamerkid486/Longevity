@@ -1,9 +1,10 @@
-// Off-game self-test for the FOR HONOR sound path: builds a synthetic Wwise AKPK pack (one sound
-// embedded in a bank's DIDX/DATA, one streamed), indexes it, converts both with vgmstream-cli and
-// loads them through the audio module. Run: wine64 build/selftest.exe <vgmstream-cli.exe>
+// Off-game self-test for the sound paths: builds a synthetic Wwise AKPK pack (one sound embedded in
+// a bank's DIDX/DATA, one streamed) and a synthetic Skyrim SE sound archive, reads and converts them
+// with vgmstream-cli and loads them through the audio module. Run: wine64 build/selftest.exe <vgmstream-cli.exe>
 #include "audio.h"
 #include "forhonor.h"
 #include "log.h"
+#include "skyrimsnd.h"
 
 #include <windows.h>
 
@@ -78,6 +79,51 @@ int main(int argc, char** argv)
     CHECK(!forhonor::ExtractWav(222, "Other.pck", vgm, (out / "fh_x.wav").wstring()));
     CHECK(!forhonor::ExtractWav(333, nullptr, vgm, (out / "fh_333.wav").wstring()));
     CHECK(forhonor::WriteIndexCsv((out / "index.csv").wstring()));
+
+    // Skyrim fallback: a synthetic SE archive (BSA 105, names embedded in the data) with two weapon
+    // block sounds and one decoy that must not match "/wpn/|block".
+    struct In { const char* dir; const char* name; Bytes data; };
+    std::vector<In> files = { { "sound\\fx\\wpn\\block", "wpn_block_01.wav", Wav(330) },
+                              { "sound\\fx\\wpn\\block", "wpn_block_02.wav", Wav(550) },
+                              { "sound\\fx\\npc\\bear", "bear_block.wav", Wav(110) } };
+    const std::uint32_t flags = 0x1 | 0x2 | 0x100;
+    std::vector<std::string> dirs = { "sound\\fx\\wpn\\block", "sound\\fx\\npc\\bear" };
+    std::uint32_t dirNames = 0, fileNames = 0;
+    for (auto& d : dirs) dirNames += std::uint32_t(d.size() + 1);
+    for (auto& f : files) fileNames += std::uint32_t(std::strlen(f.name) + 1);
+    std::uint32_t dataStart = 36 + 24 * 2 + (dirNames + 2) + 16 * std::uint32_t(files.size()) + fileNames;
+    Bytes bsa;
+    Tag(bsa, "BSA");  // the literal's terminating NUL makes the 4-byte magic "BSA\0"
+    Put32(bsa, 105); Put32(bsa, 36); Put32(bsa, flags); Put32(bsa, 2); Put32(bsa, std::uint32_t(files.size()));
+    Put32(bsa, dirNames); Put32(bsa, fileNames); Put16(bsa, 0); Put16(bsa, 0);
+    for (int d = 0; d < 2; ++d) { Put32(bsa, d); Put32(bsa, 0); Put32(bsa, d == 0 ? 2 : 1); Put32(bsa, 0); Put32(bsa, 0); Put32(bsa, 0); }
+    Bytes data;
+    for (int d = 0; d < 2; ++d) {
+        bsa.push_back(char(dirs[d].size() + 1));
+        bsa.insert(bsa.end(), dirs[d].begin(), dirs[d].end());
+        bsa.push_back(0);
+        for (auto& f : files) {
+            if (dirs[d] != f.dir) continue;
+            std::string full = std::string(f.dir) + "\\" + f.name;
+            Bytes blob;
+            blob.push_back(char(full.size()));
+            blob.insert(blob.end(), full.begin(), full.end());
+            blob.insert(blob.end(), f.data.begin(), f.data.end());
+            Put32(bsa, 0); Put32(bsa, 0); Put32(bsa, std::uint32_t(blob.size())); Put32(bsa, dataStart + std::uint32_t(data.size()));
+            data.insert(data.end(), blob.begin(), blob.end());
+        }
+    }
+    for (int d = 0; d < 2; ++d) {
+        for (auto& f : files) {
+            if (dirs[d] == f.dir) bsa.insert(bsa.end(), f.name, f.name + std::strlen(f.name) + 1);
+        }
+    }
+    CHECK(bsa.size() == dataStart);
+    bsa.insert(bsa.end(), data.begin(), data.end());
+    std::ofstream(root / "Skyrim - Sounds.bsa", std::ios::binary).write(bsa.data(), std::streamsize(bsa.size()));
+    SoundRow row{ Snd::block_impact, "block_impact", "", kWem_block_impact, 0, "/wpn/|block", 1.0f, "fh_{id}.wav" };
+    CHECK(skyrimsnd::LoadFrom((root / "Skyrim - Sounds.bsa").wstring(), row, vgm, out.wstring()) == 2);
+    CHECK(fs::exists(out / "sk_block_impact_0.wav") && fs::exists(out / "sk_block_impact_1.wav") && !fs::exists(out / "sk_block_impact_2.wav"));
 
     audio::Load(Snd::block_impact, { (out / "fh_111.wav").wstring(), (out / "fh_222.wav").wstring() });
     std::printf("INFO audio ready: %d (needs XAudio2 at runtime)\n", int(audio::Ready(Snd::block_impact)));

@@ -34,6 +34,8 @@ namespace game {
     std::string DescribeDuelist(Actor* a);  // the IsDuelist chain, for the log
     std::uint32_t FormID(Actor* a);
     float DistanceSq(Actor* a, Actor* b);
+    // Degrees a must turn (positive = clockwise/right) to face b, in [-180, 180].
+    float YawErrorDeg(Actor* a, Actor* b);
     std::uint32_t CombatTargetHandle(Actor* a);
 
     // Main thread only.

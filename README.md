@@ -8,19 +8,21 @@ self-test, and the plugin loads and safely switches itself off outside Skyrim. N
 
 ## Features
 
-- Hold block and flick the mouse up, left or right to choose your guard: Top, Left or Right. The camera
-  holds still while you're guarding, as in FOR HONOR.
+- Hold block and flick the mouse up, left or right to choose your guard: Top, Left or Right. While you're
+  guarding, the camera locks onto your opponent instead of following the mouse, as in FOR HONOR's guard
+  mode.
 - Your guard is also the direction you attack from.
 - Every armed melee enemy (bandits, draugr, guards and so on) also takes a guard and switches between
   them as it fights you.
-- An attack is blocked when the defender's guard matches the attack's direction. The hit does no damage
-  and the attacker recoils. If the guards don't match, or the defender is mid-attack, the hit lands
-  normally.
+- An attack is blocked when the defender's guard matches the attack's direction (you must be holding
+  block). The hit does no damage and the attacker recoils. If the guards don't match, or the defender is
+  mid-attack, the hit lands normally.
 - A FOR HONOR-style indicator shows your guard (bottom) and your opponent's guard (top). It glows while
   you're guarding or while your opponent is attacking.
 - FOR HONOR's own block and clash sounds play on each exchange. They're read from your FOR HONOR install
-  (Steam or Ubisoft Connect) and converted on your PC. If FOR HONOR isn't installed, duels still work
-  without its sounds.
+  (Steam or Ubisoft Connect) and converted on your PC. When FOR HONOR's sound packs can't be read (not
+  installed, or encrypted, as on current Steam copies), blocks use Skyrim's own weapon block sounds from
+  `Skyrim - Sounds.bsa` instead.
 - It's single-player. Creatures, bows, magic and fights between NPCs keep vanilla Skyrim behavior.
 
 ## Requirements
@@ -40,7 +42,7 @@ broken reference and unused row before each build.
 ```
 ./build.sh          # gen + preflight + dist/FHDuels.asi (mingw-w64)
 ./build.sh test     # also builds build/selftest.exe (run it with wine64 or on Windows)
-./package.sh 0.1.4  # dist/FHDuels-0.1.4.zip
+./package.sh 0.1.5  # dist/FHDuels-0.1.5.zip
 python3 tools/resolve_offsets.py skyrimae.relib   # refresh per-version offsets
 ```
 

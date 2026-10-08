@@ -4,6 +4,7 @@
 
 #include <windows.h>
 
+#include <cmath>
 #include <cstdio>
 #include <unordered_map>
 
@@ -165,6 +166,16 @@ namespace game {
         const float* q = &Field<float>(b, lay::refr_location);
         float dx = p[0] - q[0], dy = p[1] - q[1], dz = p[2] - q[2];
         return dx * dx + dy * dy + dz * dz;
+    }
+
+    float YawErrorDeg(Actor* a, Actor* b)
+    {
+        const float* p = &Field<float>(a, lay::refr_location);
+        const float* q = &Field<float>(b, lay::refr_location);
+        // Skyrim headings: 0 = north (+Y), growing clockwise toward east (+X).
+        float target = std::atan2(q[0] - p[0], q[1] - p[1]);
+        float err = std::remainder(target - Field<float>(a, lay::refr_angle_z), 2.0f * 3.14159265f);
+        return err * 180.0f / 3.14159265f;
     }
 
     std::uint32_t CombatTargetHandle(Actor* a)

@@ -18,7 +18,7 @@ $CXX -std=c++20 -O2 -s -shared -o dist/FHDuels.asi \
   -DWIN32_LEAN_AND_MEAN -DNOMINMAX -DUNICODE -D_UNICODE -D_WIN32_WINNT=0x0A00 \
   -DIMGUI_DISABLE_WIN32_DEFAULT_IME_FUNCTIONS \
   -Wall -Wno-unknown-pragmas \
-  src/main.cpp src/log.cpp src/game.cpp src/hooks.cpp src/duel.cpp src/audio.cpp src/forhonor.cpp src/overlay.cpp src/input.cpp \
+  src/main.cpp src/log.cpp src/game.cpp src/hooks.cpp src/duel.cpp src/audio.cpp src/forhonor.cpp src/overlay.cpp src/input.cpp src/skyrimsnd.cpp \
   "$IM"/imgui.cpp "$IM"/imgui_draw.cpp "$IM"/imgui_tables.cpp "$IM"/imgui_widgets.cpp \
   "$IM"/backends/imgui_impl_dx11.cpp "$IM"/backends/imgui_impl_win32.cpp \
   -static -static-libgcc -static-libstdc++ \
@@ -27,7 +27,7 @@ ls -l dist/FHDuels.asi
 
 if [ "${1:-}" = "test" ]; then
   $CXX -std=c++20 -O1 -o build/selftest.exe -Isrc -DUNICODE -D_UNICODE -D_WIN32_WINNT=0x0A00 \
-    tests/selftest.cpp src/forhonor.cpp src/audio.cpp src/log.cpp \
+    tests/selftest.cpp src/forhonor.cpp src/skyrimsnd.cpp src/audio.cpp src/log.cpp \
     -static -static-libgcc -static-libstdc++ -lshell32 -lole32 -luuid -ladvapi32
   echo "built build/selftest.exe"
 fi

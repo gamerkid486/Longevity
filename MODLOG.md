@@ -127,6 +127,25 @@
   while attacking, so an NPC can keep one guard through several player hits. That works as designed,
   but it may need tuning.
 
+## 0.1.5: lock-on and Skyrim block sounds (the player chose both after run 5)
+- **Lock-on:** while guarding with an opponent, `duel::Tick` measures how far the player faces from
+  the opponent (`refr_angle_z` = data.angle.z at +0x50; 0 = north, clockwise). The DirectInput state
+  hook then sets mouse X to `err × lock_on_gain` (clamped to `lock_on_max_counts`, nothing inside
+  `lock_on_deadzone_deg`), at most once per game frame. It uses no new game hooks. If |err| grows on
+  the same side on 10 frames in a row while turning, the direction flips (at most 3 times) and that's logged. The
+  first 5 turns are logged with the error and counts, for tuning the gain. This only works when the
+  game reads the mouse through GetDeviceState, which runs 4 and 5 show it does.
+- **Skyrim sounds:** `sounds.json` has a new column, `skyrim_match`. For a row FOR HONOR can't
+  supply, `skyrimsnd` reads `Data/Skyrim - Sounds.bsa` (BSA 105, read only) and picks up to 6
+  uncompressed .wav/.xwm files whose path contains every part of the match. `block_impact` uses
+  `/wpn/|block`. It converts them with vgmstream and loads them into audio. If nothing matches, it
+  logs up to 20 paths containing "block" so the match can be corrected. `hit_clash` has no fallback,
+  because landed hits already play Skyrim's own hit sound.
+- `forhonor::RunVgmstream` is now the public `ConvertToWav`.
+- Off-game: selftest 10/10 under Wine 9 (it now builds a synthetic BSA 105 with embedded names, two
+  matches and one decoy). loadtest: LoadLibrary ok. Pass vgmstream to selftest as an absolute
+  `Z:\` path under Wine, because a relative path made both ExtractWav checks fail.
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.

@@ -1,11 +1,12 @@
 {
   "sheet": "sounds",
-  "about": "FOR HONOR sounds read from the player's own install. wem_ids must be picked from the user's copy (run FHDuels with FHDUELS_DUMP_INDEX=1 to list them).",
+  "about": "FOR HONOR sounds read from the player's own install. wem_ids must be picked from the user's copy (run FHDuels with FHDUELS_DUMP_INDEX=1 to list them). When FOR HONOR can't supply a row (missing or encrypted packs), skyrim_match picks files from the game's own Skyrim - Sounds.bsa: every '|'-separated part must appear in the lowercase path ('/' separators). Empty means no fallback.",
   "columns": [
     "id",
     "used_by_rule",
     "fh_pck",
     "wem_ids",
+    "skyrim_match",
     "volume",
     "cache_file",
     "verified_in_game"
@@ -16,6 +17,7 @@
       "used_by_rule": "blocked",
       "fh_pck": "",
       "wem_ids": [],
+      "skyrim_match": "/wpn/|block",
       "volume": 1.0,
       "cache_file": "fh_{id}.wav",
       "verified_in_game": false
@@ -25,6 +27,7 @@
       "used_by_rule": "landed",
       "fh_pck": "",
       "wem_ids": [],
+      "skyrim_match": "",
       "volume": 0.8,
       "cache_file": "fh_{id}.wav",
       "verified_in_game": false

@@ -23,6 +23,8 @@ namespace duel {
     void OnMouseMove(long dx, long dy);
     // True while the camera must stay still (the player is guarding).
     bool CameraHeld();
+    // Mouse X counts to add this frame to turn toward the opponent while guarding (0 = none).
+    long LockOnCounts();
     // From the melee hit hook (weapon = HitData.weapon). Returns true when the hit must be cancelled.
     bool OnMeleeHit(game::Actor* victim, game::Actor* aggressor, const void* weapon);
 }

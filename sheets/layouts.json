@@ -57,6 +57,15 @@
       "verified_in_game": true
     },
     {
+      "id": "refr_angle_z",
+      "struct": "TESObjectREFR",
+      "field": "data.angle.z",
+      "offset": 80,
+      "type": "float, heading in radians (0 = north/+Y, clockwise)",
+      "source": "TESObjectREFR.h data // 40 + OBJ_REFR.angle // 08 + z // 08",
+      "verified_in_game": false
+    },
+    {
       "id": "refr_handle_refobj",
       "struct": "TESObjectREFR",
       "field": "BSHandleRefObject",

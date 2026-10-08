@@ -5,6 +5,7 @@
 
 #include <windows.h>
 
+#include <algorithm>
 #include <cmath>
 #include <mutex>
 #include <random>
@@ -31,6 +32,42 @@ namespace duel {
         Snapshot g_snap;
         std::mutex g_snapLock;
         Snapshot g_logged;  // last state written to the log (main thread)
+
+        // Lock-on: Tick measures how far the player faces away from the opponent; the mouse hook
+        // turns by that much. g_lockSign flips if turning keeps making it worse (inverted mouse).
+        std::atomic<float> g_lockErr{ NAN };
+        std::atomic<long> g_lockSent{ 0 };
+        float g_lockPrevErr = NAN;
+        int g_lockWorse = 0, g_lockFlips = 0;
+        std::atomic<int> g_lockSign{ 1 };
+        std::atomic<unsigned> g_frame{ 0 }, g_lockFrame{ 0 };  // turn at most once per game frame
+
+        void TrackLockOn(game::Actor* player, game::Actor* opponent)
+        {
+            if (!opponent || !g_playerGuarding || !tun::lock_on_while_guarding) {
+                g_lockErr = NAN;
+                g_lockPrevErr = NAN;
+                g_lockWorse = 0;
+                return;
+            }
+            float err = game::YawErrorDeg(player, opponent);
+            long sent = g_lockSent.exchange(0);
+            if (!std::isnan(g_lockPrevErr) && std::labs(sent) > 2) {
+                // Worse = same side and further away. An overshoot changes sides, which means the gain is
+                // too high, not that the direction is wrong.
+                bool sameSide = (err > 0) == (g_lockPrevErr > 0);
+                g_lockWorse = sameSide && std::fabs(err) > std::fabs(g_lockPrevErr) + 0.1f ? g_lockWorse + 1 : 0;
+                if (g_lockWorse >= 10 && g_lockFlips < 3) {
+                    g_lockSign = -g_lockSign;
+                    ++g_lockFlips;
+                    g_lockWorse = 0;
+                    fhd::Log("lock-on: turning made it worse, flipped direction (now %d)", g_lockSign.load());
+                }
+            }
+            g_lockPrevErr = err;
+            g_lockErr = err;
+            ++g_frame;
+        }
 
         Guard RandomGuard()
         {
@@ -110,12 +147,14 @@ namespace duel {
                 game::Release(a);
             }
         }
-        if (game::Actor* best = game::LookupActor(bestHandle)) {
+        game::Actor* best = game::LookupActor(bestHandle);
+        if (best) {
             s.hasOpponent = true;
             s.opponentGuard = NpcGuardOf(best);
             s.opponentAttacking = game::IsAttacking(best);
-            game::Release(best);
         }
+        TrackLockOn(player, best);
+        game::Release(best);
 
         if (s.playerDuelist != g_logged.playerDuelist) {
             fhd::Log("player duelist: %s (%s)", s.playerDuelist ? "yes" : "no", game::DescribeDuelist(player).c_str());
@@ -129,6 +168,19 @@ namespace duel {
     }
 
     bool CameraHeld() { return g_playerGuarding && tun::lock_camera_while_guarding != 0; }
+
+    long LockOnCounts()
+    {
+        float err = g_lockErr;
+        if (!CameraHeld() || std::isnan(err) || std::fabs(err) < tun::lock_on_deadzone_deg) return 0;
+        if (g_lockFrame.exchange(g_frame) == g_frame) return 0;  // already turned this frame
+        float c = std::clamp(err * tun::lock_on_gain * float(g_lockSign), -float(tun::lock_on_max_counts), float(tun::lock_on_max_counts));
+        long counts = std::lround(c);
+        g_lockSent += counts;
+        static int logged = 0;
+        if (counts && logged++ < 5) fhd::Log("lock-on: facing %.1f deg off, turning %ld", err, counts);
+        return counts;
+    }
 
     void OnMouseMove(long dx, long dy)
     {

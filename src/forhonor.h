@@ -14,5 +14,7 @@ namespace forhonor {
     // Building blocks (also used by tests and the sound-picking dump).
     std::size_t IndexInstall(const std::wstring& rootDir);  // every .pck under rootDir
     bool WriteIndexCsv(const std::wstring& path);
+    // Runs the bundled vgmstream-cli on one file (any format it reads) and writes a PCM WAV.
+    bool ConvertToWav(const std::wstring& vgmstreamExe, const std::wstring& in, const std::wstring& wavOut);
     bool ExtractWav(std::uint32_t wemId, const char* pckFilter, const std::wstring& vgmstreamExe, const std::wstring& wavOut);
 }

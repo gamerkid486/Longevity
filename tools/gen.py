@@ -35,12 +35,12 @@ def main():
     rules = S("rules")["rows"]
     snd = S("sounds")["rows"]
     out += ["enum class Snd : int { " + ", ".join(r["id"] for r in snd) + ", none = -1 };",
-            "struct SoundRow { Snd id; const char* name; const char* pck; const std::uint32_t* wemIds; int wemCount; float volume; const char* cacheFile; };"]
+            "struct SoundRow { Snd id; const char* name; const char* pck; const std::uint32_t* wemIds; int wemCount; const char* skyrimMatch; float volume; const char* cacheFile; };"]
     for r in snd:
         ids = r["wem_ids"] or [0]
         out.append(f"inline constexpr std::uint32_t kWem_{r['id']}[] = {{{', '.join(str(x) for x in ids)}}};")
     out += ["inline constexpr SoundRow kSounds[] = {"]
-    out += [f"    {{Snd::{r['id']}, {q(r['id'])}, {q(r['fh_pck'])}, kWem_{r['id']}, {len(r['wem_ids'])}, {float(r['volume'])}f, {q(r['cache_file'])}}}," for r in snd]
+    out += [f"    {{Snd::{r['id']}, {q(r['id'])}, {q(r['fh_pck'])}, kWem_{r['id']}, {len(r['wem_ids'])}, {q(r['skyrim_match'])}, {float(r['volume'])}f, {q(r['cache_file'])}}}," for r in snd]
     out += ["};", ""]
 
     out += ["enum class Rule : int { " + ", ".join(r["id"] for r in rules) + " };",

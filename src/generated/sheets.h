@@ -17,6 +17,10 @@ namespace tun {
     inline constexpr int flick_decay_ms = 250;  // ms: Accumulated movement resets after this long without movement
     inline constexpr int flick_cooldown_ms = 150;  // ms: Shortest time between two guard switches, so circling the mouse doesn't cycle guards
     inline constexpr int lock_camera_while_guarding = 1;  // bool: Mouse does not turn the camera while block is held (FOR HONOR guard mode)
+    inline constexpr int lock_on_while_guarding = 1;  // bool: While block is held and there's an opponent, the camera turns to face them (FOR HONOR guard mode)
+    inline constexpr float lock_on_gain = 0.4f;  // mouse counts per degree: Turn speed: mouse movement added per frame for each degree the player faces away from the opponent
+    inline constexpr int lock_on_max_counts = 30;  // mouse counts: Most mouse movement added in one frame, so big turns stay smooth
+    inline constexpr float lock_on_deadzone_deg = 1.5f;  // degrees: No turning when already this close to facing the opponent
     inline constexpr int npc_guard_hold_min_ms = 1200;  // ms: Shortest time an NPC keeps a guard
     inline constexpr int npc_guard_hold_max_ms = 2600;  // ms: Longest time an NPC keeps a guard
     inline constexpr float npc_mirror_chance = 0.45f;  // 0-1: Chance an NPC's next guard copies the player's guard (defends)
@@ -27,12 +31,12 @@ namespace tun {
 }
 
 enum class Snd : int { block_impact, hit_clash, none = -1 };
-struct SoundRow { Snd id; const char* name; const char* pck; const std::uint32_t* wemIds; int wemCount; float volume; const char* cacheFile; };
+struct SoundRow { Snd id; const char* name; const char* pck; const std::uint32_t* wemIds; int wemCount; const char* skyrimMatch; float volume; const char* cacheFile; };
 inline constexpr std::uint32_t kWem_block_impact[] = {0};
 inline constexpr std::uint32_t kWem_hit_clash[] = {0};
 inline constexpr SoundRow kSounds[] = {
-    {Snd::block_impact, "block_impact", "", kWem_block_impact, 0, 1.0f, "fh_{id}.wav"},
-    {Snd::hit_clash, "hit_clash", "", kWem_hit_clash, 0, 0.8f, "fh_{id}.wav"},
+    {Snd::block_impact, "block_impact", "", kWem_block_impact, 0, "/wpn/|block", 1.0f, "fh_{id}.wav"},
+    {Snd::hit_clash, "hit_clash", "", kWem_hit_clash, 0, "", 0.8f, "fh_{id}.wav"},
 };
 
 enum class Rule : int { not_a_duel, blocked, landed };
@@ -56,6 +60,7 @@ namespace lay {
     inline constexpr std::ptrdiff_t form_type = 0x1A;  // TESForm.formType (uint8)
     inline constexpr std::ptrdiff_t form_id = 0x14;  // TESForm.formID (uint32)
     inline constexpr std::ptrdiff_t refr_location = 0x54;  // TESObjectREFR.data.location (float[3])
+    inline constexpr std::ptrdiff_t refr_angle_z = 0x50;  // TESObjectREFR.data.angle.z (float, heading in radians (0 = north/+Y, clockwise))
     inline constexpr std::ptrdiff_t refr_handle_refobj = 0x20;  // TESObjectREFR.BSHandleRefObject (subobject (refcount at +8, low 10 bits))
     inline constexpr std::ptrdiff_t refr_anim_holder = 0x38;  // TESObjectREFR.IAnimationGraphManagerHolder (subobject; vfunc 1 NotifyAnimationGraph(const BSFixedString&))
     inline constexpr std::ptrdiff_t refr_vfunc_is_dead = 0x99;  // TESObjectREFR.vfunc IsDead(bool) (vtable index)

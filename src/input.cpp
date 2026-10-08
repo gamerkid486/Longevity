@@ -50,7 +50,10 @@ namespace input {
             auto* st = static_cast<DIMOUSESTATE*>(out);
             if (g_stateCalls++ < 3) fhd::Log("input: GetDeviceState mouse %ld %ld", st->lX, st->lY);
             if (!g_buffered) duel::OnMouseMove(st->lX, st->lY);
-            if (duel::CameraHeld()) st->lX = st->lY = 0;
+            if (duel::CameraHeld()) {
+                st->lX = g_buffered ? 0 : duel::LockOnCounts();  // lock-on turns through the polled state only
+                st->lY = 0;
+            }
             return hr;
         }
 

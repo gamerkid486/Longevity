@@ -45,6 +45,8 @@ def main():
                     if v is not True:
                         pending.append(f"{name}.{rid}: not yet verified in the running game")
                     continue
+                if name == "sounds" and c == "skyrim_match" and empty(v):
+                    continue  # optional: no Skyrim fallback for this row (landed hits already sound in vanilla)
                 if name == "sounds" and c in ("fh_pck", "wem_ids") and empty(v):
                     pending.append(f"sounds.{rid}.{c}: pick from the player's FOR HONOR install (FHDUELS_DUMP_INDEX=1)")
                     continue
