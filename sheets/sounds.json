@@ -20,7 +20,7 @@
       "skyrim_match": "/wpn/|block",
       "volume": 1.0,
       "cache_file": "fh_{id}.wav",
-      "verified_in_game": false
+      "verified_in_game": true
     },
     {
       "id": "hit_clash",

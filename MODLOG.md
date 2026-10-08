@@ -166,6 +166,20 @@
   within the dead zone by about 30 frames in every case. The log has one lock-on line per second
   (error and degrees per count).
 
+## Run 7 (player's PC, 2026-10-08): lock-on and block sounds confirmed
+- Lock-on: the player said the turn speed is "about right" and the camera "stayed on them" while
+  circling for 10+ seconds. Each hold starts up to 74° off and is within about 2° a second later.
+  84 of the 102 later samples are within 3°. The learned degrees per count is 0.036 to 0.079
+  (median 0.046), always positive, with no flips. A few one-off samples are ~45° off and back on
+  target a second later. Nearby NPC fights point to the enemy dodging or the opponent switching,
+  and the player didn't notice them. Opponent switches aren't logged yet.
+- Block sounds: all 41 blocks logged `audio: played sound 0 clip N` at the same millisecond, using
+  all 6 Skyrim clips, so the clang is ours. `refr_angle_z` and `sounds.block_impact` are marked
+  verified (block_impact through the Skyrim fallback; its FOR HONOR IDs are still unpicked, because
+  the packs are encrypted).
+- Recoil, flicks, the HUD, sheathe-hide and the notification all still work.
+- The player's other mods are still set aside (`SkyCraft.asi.off`, `Plugins.txt.fhduels-backup`).
+
 ## Gotchas
 1. Wine's FAudio crashes in CreateMasteringVoice when there's no audio device. The plugin now checks
    for an MMDevice endpoint first.
